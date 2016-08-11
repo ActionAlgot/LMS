@@ -142,6 +142,7 @@ namespace LMS.Controllers
             return View();
         }
 
+		/*
         //
         // POST: /Account/Register
         [HttpPost]
@@ -171,6 +172,7 @@ namespace LMS.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+		 * */
 
         //
         // GET: /Account/ConfirmEmail
@@ -347,6 +349,7 @@ namespace LMS.Controllers
             }
         }
 
+		/*
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
@@ -384,6 +387,7 @@ namespace LMS.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+		 * */
 
         //
         // POST: /Account/LogOff
