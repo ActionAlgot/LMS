@@ -18,7 +18,7 @@ using System.Linq;
 
         protected override void Seed(LMS.Models.ApplicationDbContext context){
 
-			var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(context));
+            var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>(context));
 			if (!roleManager.RoleExists("Teacher")) {
 				var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
 				role.Name = "Teacher";
@@ -34,20 +34,20 @@ using System.Linq;
 				new UserStore<ApplicationUser>(context));
 
 			var studs = new List<ApplicationUser>(){
-				new ApplicationUser { UserName = "test2@test.com", Email = "test2@test.com" },
-				new ApplicationUser { UserName = "stud2@test.com", Email = "stud2@test.com" },
-				new ApplicationUser { UserName = "stud3@test.com", Email = "stud3@test.com" },
-				new ApplicationUser { UserName = "stud4@test.com", Email = "stud4@test.com" },
-				new ApplicationUser { UserName = "stud5@test.com", Email = "stud5@test.com" },
-				new ApplicationUser { UserName = "stud6@test.com", Email = "stud6@test.com" },
-				new ApplicationUser { UserName = "stud7@test.com", Email = "stud7@test.com" },
-				new ApplicationUser { UserName = "stud8@test.com", Email = "stud8@test.com" }
+				new ApplicationUser { UserName = "test2@test.com", Email = "test2@test.com", LastName = "Andersson", FirstName = "Bengt" },
+				new ApplicationUser { UserName = "stud2@test.com", Email = "stud2@test.com", LastName = "Bengtsson", FirstName = "Sandra"  },
+				new ApplicationUser { UserName = "stud3@test.com", Email = "stud3@test.com", LastName = "Dahl", FirstName = "Lena"  },
+				new ApplicationUser { UserName = "stud4@test.com", Email = "stud4@test.com", LastName = "Nilsson", FirstName = "Magnus"  },
+				new ApplicationUser { UserName = "stud5@test.com", Email = "stud5@test.com", LastName = "Steen", FirstName = "Fredrik"  },
+				new ApplicationUser { UserName = "stud6@test.com", Email = "stud6@test.com", LastName = "Åkerberg", FirstName = "Annika"  },
+				new ApplicationUser { UserName = "stud7@test.com", Email = "stud7@test.com", LastName = "Hansson", FirstName = "Elin"  },
+				new ApplicationUser { UserName = "stud8@test.com", Email = "stud8@test.com", LastName = "Miller", FirstName = "Petter"  }
 			};
 
 			var techs = new List<ApplicationUser>(){
-				new ApplicationUser { UserName = "test1@test.com", Email = "test1@test.com" },
-				new ApplicationUser { UserName = "teach2@test.com", Email = "teach2@test.com"},
-				new ApplicationUser { UserName = "teach3@test.com", Email = "teach3@test.com" }
+				new ApplicationUser { UserName = "test1@test.com", Email = "test1@test.com", LastName = "Bergdahl", FirstName = "Calle" },
+				new ApplicationUser { UserName = "teach2@test.com", Email = "teach2@test.com", LastName = "Mickelsson", FirstName = "Margareta" },
+				new ApplicationUser { UserName = "teach3@test.com", Email = "teach3@test.com", LastName = "Österberg", FirstName = "Monica"  }
 			};
 
 			foreach(var t in techs){
