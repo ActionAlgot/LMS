@@ -17,7 +17,7 @@ namespace LMS.Controllers
         }
 
 		public ActionResult Details(int Id) {
-			return View(repo.GetSpecific(Id));
+			return View(new KlassDetailsViewModel(repo.GetSpecific(Id), repo.GetNonMembers(Id)));
 		}
 
 		[Authorize(Roles="Teacher")]
@@ -40,6 +40,14 @@ namespace LMS.Controllers
 				return RedirectToAction("Index");
 			}
 			return View(model);
+		}
+
+		[Authorize(Roles="Teacher")]
+		public JsonResult AddKlassMember(int Id, string UId) {
+
+			repo.AddKlassMember(Id, UId);
+
+			return Json(new { }, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

@@ -21,9 +21,24 @@ namespace LMS.Repositories {
 			ctx.SaveChanges();
 		}
 
-		public void AddKlassMember(int Id, string UId) {
-			ctx.Klasses.SingleOrDefault(k => k.ID == Id).Members.Add(ctx.Users.SingleOrDefault(u => u.Id == UId));
-			ctx.SaveChanges();
+		//get users that are not members of klass
+		public IEnumerable<ApplicationUser> GetNonMembers(int Id){
+			var klass = ctx.Klasses.SingleOrDefault(k => k.ID == Id);
+			if (klass == null) return null;
+			var nonMembers = ctx.Users;
+			foreach (var m in klass.Members) nonMembers.Where(u => u.Id != m.Id);
+			return nonMembers;
+		}
+
+		public bool AddKlassMember(int Id, string UId) {
+			var klass = ctx.Klasses.SingleOrDefault(k => k.ID == Id);
+			var member = ctx.Users.SingleOrDefault(u => u.Id == UId);
+			if (klass != null && member != null && !klass.Members.Any(u => u.Id == UId)) {
+				klass.Members.Add(member);
+				ctx.SaveChanges();
+				return true;
+			}
+			return false;
 		}
 
 		public bool RemoveKlassMember(int Id, string UId) {

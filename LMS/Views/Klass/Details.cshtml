@@ -1,4 +1,4 @@
-﻿@model LMS.Models.Klass
+﻿@model LMS.Models.KlassDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,20 +11,20 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Klass.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Klass.Name)
         </dd>
     </dl>
 
-	<div ng-controller="KlassMemberTable" ng-init="KlassId = @Model.ID">
-		@Html.Partial("KlassMembersListPartial", Model.Members)
+	<div ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
+		@Html.Partial("KlassMembersListPartial", Model.Klass.Members)
 	</div>
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Klass.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
