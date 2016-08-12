@@ -9,6 +9,12 @@
 <div ng-app="KlassApp">
     <h4>Klass</h4>
     <hr />
+
+	<div ng-controller="AddKlassMemberTable" ng-init="KlassId = @Model.Klass.ID; showshit = false">
+		<button ng-click="showshit = !showshit">Add members</button>
+		@Html.Partial("StudentAddingPartial", Model.NonMembers)
+	</div>
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Klass.Name)

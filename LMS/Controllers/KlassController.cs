@@ -45,9 +45,9 @@ namespace LMS.Controllers
 		[Authorize(Roles="Teacher")]
 		public JsonResult AddKlassMember(int Id, string UId) {
 
-			repo.AddKlassMember(Id, UId);
+			bool success = repo.AddKlassMember(Id, UId);
 
-			return Json(new { }, JsonRequestBehavior.AllowGet);
+			return Json(new { Added = success}, JsonRequestBehavior.AllowGet);
 		}
 	}
 }
