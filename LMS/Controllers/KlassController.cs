@@ -20,6 +20,7 @@ namespace LMS.Controllers
 			return View(repo.GetSpecific(Id));
 		}
 
+		[Authorize(Roles="Teacher")]
 		public JsonResult RemoveKlassMember(int Id, string UId) {
 			bool success = repo.RemoveKlassMember(Id, UId);
 			return Json(new { Removed = success }, JsonRequestBehavior.AllowGet);
