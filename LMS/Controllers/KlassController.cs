@@ -19,6 +19,10 @@ namespace LMS.Controllers
 		public ActionResult Details(int Id) {
 			return View(repo.GetSpecific(Id));
 		}
-		
+
+		public JsonResult RemoveKlassMember(int Id, string UId) {
+			bool success = repo.RemoveKlassMember(Id, UId);
+			return Json(new { Removed = success }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

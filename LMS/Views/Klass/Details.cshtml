@@ -6,7 +6,7 @@
 
 <h2>Details</h2>
 
-<div>
+<div ng-app="KlassApp">
     <h4>Klass</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -17,9 +17,13 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-
     </dl>
+
+	<div ng-controller="KlassMemberTable" ng-init="KlassId = @Model.ID">
+		@Html.Partial("KlassMembersListPartial", Model.Members)
+	</div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")

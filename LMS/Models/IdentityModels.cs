@@ -26,8 +26,7 @@ namespace LMS.Models
 
 		public DbSet<Klass> Klasses { get; set; }
 
-        public static ApplicationDbContext Create()
-        {
+        public static ApplicationDbContext Create() {
             return new ApplicationDbContext();
         }
     }
