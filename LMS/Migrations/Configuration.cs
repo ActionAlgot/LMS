@@ -34,20 +34,20 @@ using System.Linq;
 				new UserStore<ApplicationUser>(context));
 
 			var studs = new List<ApplicationUser>(){
-				new ApplicationUser { UserName = "test2@test.com", Email = "test2@test.com", LastName = "Andersson", FirstName = "Bengt" },
-				new ApplicationUser { UserName = "stud2@test.com", Email = "stud2@test.com", LastName = "Bengtsson", FirstName = "Sandra"  },
-				new ApplicationUser { UserName = "stud3@test.com", Email = "stud3@test.com", LastName = "Dahl", FirstName = "Lena"  },
-				new ApplicationUser { UserName = "stud4@test.com", Email = "stud4@test.com", LastName = "Nilsson", FirstName = "Magnus"  },
-				new ApplicationUser { UserName = "stud5@test.com", Email = "stud5@test.com", LastName = "Steen", FirstName = "Fredrik"  },
-				new ApplicationUser { UserName = "stud6@test.com", Email = "stud6@test.com", LastName = "Åkerberg", FirstName = "Annika"  },
-				new ApplicationUser { UserName = "stud7@test.com", Email = "stud7@test.com", LastName = "Hansson", FirstName = "Elin"  },
-				new ApplicationUser { UserName = "stud8@test.com", Email = "stud8@test.com", LastName = "Miller", FirstName = "Petter"  }
+				new ApplicationUser { UserName = "test2@test.com", Email = "test2@test.com", LastName = "Andersson", FirstName = "Bengt", PhoneNumber ="070-1234567"},
+				new ApplicationUser { UserName = "stud2@test.com", Email = "stud2@test.com", LastName = "Bengtsson", FirstName = "Sandra", PhoneNumber ="070-1234568"},
+				new ApplicationUser { UserName = "stud3@test.com", Email = "stud3@test.com", LastName = "Dahl", FirstName = "Lena", PhoneNumber ="070-1234569"},
+				new ApplicationUser { UserName = "stud4@test.com", Email = "stud4@test.com", LastName = "Nilsson", FirstName = "Magnus", PhoneNumber ="070-1234570"},
+				new ApplicationUser { UserName = "stud5@test.com", Email = "stud5@test.com", LastName = "Steen", FirstName = "Fredrik", PhoneNumber ="070-1234571"},
+				new ApplicationUser { UserName = "stud6@test.com", Email = "stud6@test.com", LastName = "Åkerberg", FirstName = "Annika", PhoneNumber ="070-1234572"},
+				new ApplicationUser { UserName = "stud7@test.com", Email = "stud7@test.com", LastName = "Hansson", FirstName = "Elin", PhoneNumber ="070-1234573"},
+				new ApplicationUser { UserName = "stud8@test.com", Email = "stud8@test.com", LastName = "Miller", FirstName = "Petter", PhoneNumber ="070-1234574"}
 			};
 
 			var techs = new List<ApplicationUser>(){
-				new ApplicationUser { UserName = "test1@test.com", Email = "test1@test.com", LastName = "Bergdahl", FirstName = "Calle" },
-				new ApplicationUser { UserName = "teach2@test.com", Email = "teach2@test.com", LastName = "Mickelsson", FirstName = "Margareta" },
-				new ApplicationUser { UserName = "teach3@test.com", Email = "teach3@test.com", LastName = "Österberg", FirstName = "Monica"  }
+				new ApplicationUser { UserName = "test1@test.com", Email = "test1@test.com", LastName = "Bergdahl", FirstName = "Calle", PhoneNumber ="070-1234575"},
+				new ApplicationUser { UserName = "teach2@test.com", Email = "teach2@test.com", LastName = "Mickelsson", FirstName = "Margareta", PhoneNumber ="070-1234576"},
+				new ApplicationUser { UserName = "teach3@test.com", Email = "teach3@test.com", LastName = "Österberg", FirstName = "Monica", PhoneNumber ="070-1234578"}
 			};
 
 			foreach(var t in techs){
