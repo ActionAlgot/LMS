@@ -16,6 +16,11 @@ namespace LMS.Repositories {
 			return ctx.Klasses.SingleOrDefault(k => k.ID == Id);
 		}
 
+		public void Add(Klass klass) {
+			ctx.Klasses.Add(klass);
+			ctx.SaveChanges();
+		}
+
 		public void AddKlassMember(int Id, string UId) {
 			ctx.Klasses.SingleOrDefault(k => k.ID == Id).Members.Add(ctx.Users.SingleOrDefault(u => u.Id == UId));
 			ctx.SaveChanges();
