@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace LMS.Controllers
 {
+	[Authorize(Roles = "Teacher")]
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,11 +29,9 @@ namespace LMS.Controllers
 				_userManager = value;
 			}
 		}
-
 		public UsersController()
         {
         }
-
 		public UsersController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
@@ -129,7 +128,6 @@ namespace LMS.Controllers
         }
 
         // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
