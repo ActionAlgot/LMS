@@ -7,17 +7,41 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LMS.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace LMS.Controllers
 {
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+		private ApplicationUserManager _userManager;
 
-        // GET: Users
+		public ApplicationUserManager UserManager
+		{
+			get
+			{
+				return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+			}
+			private set
+			{
+				_userManager = value;
+			}
+		}
+
+		public UsersController()
+        {
+        }
+
+		public UsersController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
+        }
+
+		// GET: Users
         public ActionResult Index()
         {
-            return View(db.ApplicationUsers.ToList());
+			return View(UserManager.Users.ToList());
         }
 
         // GET: Users/Details/5
@@ -27,7 +51,7 @@ namespace LMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+			ApplicationUser applicationUser = UserManager.FindById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -50,7 +74,7 @@ namespace LMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ApplicationUsers.Add(applicationUser);
+				UserManager.Create(applicationUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +89,7 @@ namespace LMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+			ApplicationUser applicationUser = UserManager.FindById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -96,7 +120,7 @@ namespace LMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+			ApplicationUser applicationUser = UserManager.FindById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -109,8 +133,8 @@ namespace LMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
-            db.ApplicationUsers.Remove(applicationUser);
+			ApplicationUser applicationUser = UserManager.FindById(id);
+			UserManager.Delete(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
