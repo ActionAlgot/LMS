@@ -7,14 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LMS.Models;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity;
+using LMS.Repositories;
 
 namespace LMS.Controllers
 {
 	[Authorize(Roles = "Teacher")]
     public class UsersController : Controller
     {
+        /*
         private ApplicationDbContext db = new ApplicationDbContext();
 		private ApplicationUserManager _userManager;
 
@@ -36,15 +36,16 @@ namespace LMS.Controllers
         {
             UserManager = userManager;
         }
+        */
 
-		// GET: Users
         public ActionResult Index()
         {
-			return View(UserManager.Users.ToList());
+            var repo = new UserRepository();
+            return View(repo.GetAll());
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(string id)
+        /*public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -56,18 +57,18 @@ namespace LMS.Controllers
                 return HttpNotFound();
             }
             return View(applicationUser);
-        }
+        }*/
 
         // GET: Users/Create
-        public ActionResult Create()
+        /*public ActionResult Create()
         {
             return View();
-        }
+        }*/
 
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
@@ -145,5 +146,6 @@ namespace LMS.Controllers
             }
             base.Dispose(disposing);
         }
+        */
     }
 }
