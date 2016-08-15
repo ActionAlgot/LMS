@@ -14,35 +14,52 @@ namespace LMS.Controllers
 	[Authorize(Roles = "Teacher")]
     public class UsersController : Controller
     {
-        /*
-        private ApplicationDbContext db = new ApplicationDbContext();
-		private ApplicationUserManager _userManager;
-
-		public ApplicationUserManager UserManager
-		{
-			get
-			{
-				return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-			}
-			private set
-			{
-				_userManager = value;
-			}
-		}
-		public UsersController()
-        {
-        }
-		public UsersController(ApplicationUserManager userManager)
-        {
-            UserManager = userManager;
-        }
-        */
-
         public ActionResult Index()
         {
             var repo = new UserRepository();
             return View(repo.GetAll());
         }
+
+        //Form for create user
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //Create user
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(UserViewModel newUser) /*[Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)*/
+        {
+            if (ModelState.IsValid)
+            {
+                var repo = new UserRepository();
+                repo.CreateNewUser(newUser);
+                
+                return RedirectToAction("Index");
+            }
+
+            return View(newUser);
+        }
+
+
+        // POST: Users/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        {
+            if (ModelState.IsValid)
+            {
+				UserManager.Create(applicationUser);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(applicationUser);
+        }
+
 
         // GET: Users/Details/5
         /*public ActionResult Details(string id)
@@ -59,11 +76,6 @@ namespace LMS.Controllers
             return View(applicationUser);
         }*/
 
-        // GET: Users/Create
-        /*public ActionResult Create()
-        {
-            return View();
-        }*/
 
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

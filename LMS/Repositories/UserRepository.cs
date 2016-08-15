@@ -59,12 +59,31 @@ namespace LMS.Repositories
             return users;
         }
 
+        public bool CreateNewUser(UserViewModel newUser)
+        {
+            var user = new ApplicationUser {
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                UserName = newUser.Email,
+                Email = newUser.Email,
+                PhoneNumber = newUser.PhoneNumber
+            };
+
+            var result = UserManager.Create(user);/*, model.Password);*/
+            ctx.SaveChanges();
+            return true;
+        }
+
+
         //Hämta fram en specifik elev
         /*public ApplicationUser GetSpecific(int Id)
         {
             //todo: hämta en user med en annan metod
             return ctx.Users.SingleOrDefault(k => k.ID == Id);
         }*/
+
+
+
 
         //Lägg till en elev
         public void Add(ApplicationUser user)
