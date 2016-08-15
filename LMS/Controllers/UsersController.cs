@@ -20,6 +20,13 @@ namespace LMS.Controllers
             return View(repo.GetAll());
         }
 
+		
+		public ActionResult Students()
+		{
+			var repo = new UserRepository();
+			return View("Index",repo.GetAllStudents() );
+
+		}
         //Form for create user
         public ActionResult Create()
         {

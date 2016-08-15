@@ -59,6 +59,28 @@ namespace LMS.Repositories
             return users.OrderBy(o => o.LastName).ToList();
         }
 
+		//Lista alla elever
+		public List<UserViewModel> GetAllStudents()
+		{
+			//Flytta den data vi vill ha från usermanager till en viewmodel.
+			List<UserViewModel> users = new List<UserViewModel>();
+			var userList = UserManager.Users.ToList().Where(u => UserManager.IsInRole(u.Id,"Student")).ToList<ApplicationUser>();
+			foreach (ApplicationUser AppUser in userList)
+			{
+				var user = new UserViewModel
+				{
+					Id = AppUser.Id,
+					FirstName = AppUser.FirstName,
+					LastName = AppUser.LastName,
+					Email = AppUser.Email,
+					PhoneNumber = AppUser.PhoneNumber,
+					UserName = AppUser.UserName
+				};
+				users.Add(user);
+			}
+			return users.OrderBy(o => o.LastName).ToList();
+		}
+
         public bool CreateNewUser(UserViewModel newUser)
         {
             var user = new ApplicationUser {
