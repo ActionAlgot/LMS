@@ -56,7 +56,7 @@ namespace LMS.Repositories
                 };
                 users.Add(user);
             }
-            return users;
+            return users.OrderBy(o => o.LastName).ToList();
         }
 
         public bool CreateNewUser(UserViewModel newUser)
@@ -74,35 +74,33 @@ namespace LMS.Repositories
             return true;
         }
 
-
         //Hämta fram en specifik elev
-        /*public ApplicationUser GetSpecific(int Id)
+        public UserViewModel GetSpecific(string Id)
         {
-            //todo: hämta en user med en annan metod
-            return ctx.Users.SingleOrDefault(k => k.ID == Id);
-        }*/
+            var AppUser = UserManager.Users.SingleOrDefault(k => k.Id == Id);
+            var user = new UserViewModel
+            {
+                FirstName = AppUser.FirstName,
+                LastName = AppUser.LastName,
+                PhoneNumber = AppUser.PhoneNumber,
+                Email = AppUser.Email,
+                UserName = AppUser.UserName
+            };
 
-
-
-
-        //Lägg till en elev
-        public void Add(ApplicationUser user)
-        {
-            //ctx.Klasses.Add(klass);
-            //ctx.SaveChanges();
+            return user;
         }
 
         //Ta bort en elev
-        public void Remove(ApplicationUser user)
+        public void Remove(string Id)
         {
-            //ctx.Klasses.Add(klass);
+            //Här ska vi ta bort en användare
             //ctx.SaveChanges();
         }
 
         //Uppdatera en elev
         public void Update(ApplicationUser user)
         {
-            //ctx.Klasses.Add(klass);
+            //Här ska vi kunna uppdatera en användares information
             //ctx.SaveChanges();
         }
     }

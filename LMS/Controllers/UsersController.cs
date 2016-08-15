@@ -42,40 +42,29 @@ namespace LMS.Controllers
             return View(newUser);
         }
 
-
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
-        {
-            if (ModelState.IsValid)
-            {
-				UserManager.Create(applicationUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(applicationUser);
-        }
-
-
         // GET: Users/Details/5
-        /*public ActionResult Details(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			ApplicationUser applicationUser = UserManager.FindById(id);
+
+            var repo = new UserRepository();
+            UserViewModel user = repo.GetSpecific(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+            /*ApplicationUser applicationUser = UserManager.FindById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
-        }*/
-
+            return View(applicationUser);*/
+        }
+    
 
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
