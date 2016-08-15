@@ -66,10 +66,14 @@ namespace LMS.Repositories
                 LastName = newUser.LastName,
                 UserName = newUser.Email,
                 Email = newUser.Email,
-                PhoneNumber = newUser.PhoneNumber
+                PhoneNumber = newUser.PhoneNumber,
+				PasswordHash = UserManager.PasswordHasher.HashPassword(newUser.NewPassword)
             };
-
-            var result = UserManager.Create(user);/*, model.Password);*/
+			//todo kolla att create lyckas
+			//todo sätt rollen till student eller teacher
+			//todo token för att tvinga passwordbyte vid första login - wish bara
+			//todo varför blir lockedout enabled ?
+            var result = UserManager.Create(user);
             ctx.SaveChanges();
             return true;
         }
