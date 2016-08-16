@@ -16,5 +16,6 @@ namespace LMS.Models
         public string UserName { get; set; }
 		[Display (Name = "Password")]
 		public string NewPassword { get; set; }
+        public string Roles { get; set; }
     }
 }
