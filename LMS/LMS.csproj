@@ -258,6 +258,8 @@
     <Content Include="Views\Klass\KlassMembersListPartial.cshtml" />
     <Content Include="Views\Klass\Create.cshtml" />
     <Content Include="Views\Klass\StudentAddingPartial.cshtml" />
+    <Content Include="Views\Home\Student.cshtml" />
+    <Content Include="Views\Home\Teacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
