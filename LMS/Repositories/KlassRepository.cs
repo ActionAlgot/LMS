@@ -25,8 +25,8 @@ namespace LMS.Repositories {
 		public IEnumerable<ApplicationUser> GetNonMembers(int Id){
 			var klass = ctx.Klasses.SingleOrDefault(k => k.ID == Id);
 			if (klass == null) return null;
-			var nonMembers = ctx.Users;
-			foreach (var m in klass.Members) nonMembers.Where(u => u.Id != m.Id);
+			IQueryable<ApplicationUser> nonMembers = ctx.Users;
+			foreach (var m in klass.Members) nonMembers = nonMembers.Where(u => u.Id != m.Id);
 			return nonMembers;
 		}
 
