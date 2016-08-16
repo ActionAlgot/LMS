@@ -41,11 +41,12 @@ namespace LMS.Controllers
             if (ModelState.IsValid)
             {
                 var repo = new UserRepository();
-                repo.CreateNewUser(newUser);
-                
-                return RedirectToAction("Index");
+                bool result = repo.CreateNewUser(newUser);
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-
             return View(newUser);
         }
 

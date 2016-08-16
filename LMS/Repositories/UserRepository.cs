@@ -96,8 +96,13 @@ namespace LMS.Repositories
 			//todo token för att tvinga passwordbyte vid första login - wish bara
 			//todo varför blir lockedout enabled ?
             var result = UserManager.Create(user);
-            ctx.SaveChanges();
-            return true;
+            if(result.Succeeded)
+            {
+                UserManager.AddToRole(user.Id, newUser.Roles);
+                ctx.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         //Hämta fram en specifik elev
