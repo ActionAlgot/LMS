@@ -14,7 +14,6 @@ namespace LMS.Repositories
 {
     public class UserRepository
     {
-        //private ApplicationDbContext ctx = new ApplicationDbContext();
         private ApplicationUserManager _userManager;
 
         public ApplicationUserManager UserManager
@@ -38,7 +37,35 @@ namespace LMS.Repositories
             UserManager = userManager;
         }
 
-        //Lista alla elever
+        //todo: inprogress
+        /*public List<UserViewModel> GetKlassMembers(Klass klass)
+        {
+            //ApplicationUserKlasses är kopplingstabellen
+            //AspNetUsers är användarna
+            //Klasses är klasserna
+
+            //Flytta den data vi vill ha från usermanager till en viewmodel.
+            List<UserViewModel> users = new List<UserViewModel>();
+            var userList = UserManager.Users.ToList().Where(u => UserManager.IsInRole(u.Id, "Student")).ToList<ApplicationUser>();
+            foreach (ApplicationUser AppUser in userList)
+            {
+                var user = new UserViewModel
+                {
+                    Id = AppUser.Id,
+                    FirstName = AppUser.FirstName,
+                    LastName = AppUser.LastName,
+                    Email = AppUser.Email,
+                    PhoneNumber = AppUser.PhoneNumber,
+                    UserName = AppUser.UserName
+                };
+                users.Add(user);
+            }
+            return users.OrderBy(o => o.LastName).ToList();
+        }*/
+
+
+
+        //Lista alla användare
         public List<UserViewModel> GetAll()
         {
             //Flytta den data vi vill ha från usermanager till en viewmodel.
@@ -46,7 +73,8 @@ namespace LMS.Repositories
             var userList = UserManager.Users.ToList<ApplicationUser>();
             foreach (ApplicationUser AppUser in userList)
             {
-                var user = new UserViewModel {
+                var user = new UserViewModel
+                {
                     Id = AppUser.Id,
                     FirstName = AppUser.FirstName,
                     LastName = AppUser.LastName,
@@ -59,44 +87,42 @@ namespace LMS.Repositories
             return users.OrderBy(o => o.LastName).ToList();
         }
 
-		//Lista alla elever
-		public List<UserViewModel> GetAllStudents()
-		{
-			//Flytta den data vi vill ha från usermanager till en viewmodel.
-			List<UserViewModel> users = new List<UserViewModel>();
-			var userList = UserManager.Users.ToList().Where(u => UserManager.IsInRole(u.Id,"Student")).ToList<ApplicationUser>();
-			foreach (ApplicationUser AppUser in userList)
-			{
-				var user = new UserViewModel
-				{
-					Id = AppUser.Id,
-					FirstName = AppUser.FirstName,
-					LastName = AppUser.LastName,
-					Email = AppUser.Email,
-					PhoneNumber = AppUser.PhoneNumber,
-					UserName = AppUser.UserName
-				};
-				users.Add(user);
-			}
-			return users.OrderBy(o => o.LastName).ToList();
-		}
+        //Lista alla elever
+        public List<UserViewModel> GetAllStudents()
+        {
+            //Flytta den data vi vill ha från usermanager till en viewmodel.
+            List<UserViewModel> users = new List<UserViewModel>();
+            var userList = UserManager.Users.ToList().Where(u => UserManager.IsInRole(u.Id, "Student")).ToList<ApplicationUser>();
+            foreach (ApplicationUser AppUser in userList)
+            {
+                var user = new UserViewModel
+                {
+                    Id = AppUser.Id,
+                    FirstName = AppUser.FirstName,
+                    LastName = AppUser.LastName,
+                    Email = AppUser.Email,
+                    PhoneNumber = AppUser.PhoneNumber,
+                    UserName = AppUser.UserName
+                };
+                users.Add(user);
+            }
+            return users.OrderBy(o => o.LastName).ToList();
+        }
 
         public bool CreateNewUser(UserViewModel newUser)
         {
-            var user = new ApplicationUser {
+            var user = new ApplicationUser
+            {
                 FirstName = newUser.FirstName,
                 LastName = newUser.LastName,
                 UserName = newUser.Email,
                 Email = newUser.Email,
                 PhoneNumber = newUser.PhoneNumber,
-				PasswordHash = UserManager.PasswordHasher.HashPassword(newUser.NewPassword)
+                PasswordHash = UserManager.PasswordHasher.HashPassword(newUser.NewPassword)
             };
-			//todo kolla att create lyckas
-			//todo sätt rollen till student eller teacher
-			//todo token för att tvinga passwordbyte vid första login - wish bara
-			//todo varför blir lockedout enabled ?
+            //todo varför blir lockedout enabled ?
             var result = UserManager.Create(user);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 UserManager.AddToRole(user.Id, newUser.Roles);
                 return true;
@@ -111,42 +137,37 @@ namespace LMS.Repositories
             var user = new UserViewModel
             {
                 Id = AppUser.Id,
-				FirstName = AppUser.FirstName,
+                FirstName = AppUser.FirstName,
                 LastName = AppUser.LastName,
                 PhoneNumber = AppUser.PhoneNumber,
                 Email = AppUser.Email,
                 UserName = AppUser.UserName
             };
-
             return user;
         }
 
         //Ta bort en elev
         public bool Remove(string Id)
         {
-			ApplicationUser applicationUser = UserManager.FindById(Id);
-			if (applicationUser == null)
-			{
-				return false;
-			}
-			UserManager.Delete(applicationUser);
-			return true;
+            ApplicationUser applicationUser = UserManager.FindById(Id);
+            if (applicationUser == null)
+            {
+                return false;
+            }
+            UserManager.Delete(applicationUser);
+            return true;
         }
 
         //Uppdatera en elev
         public void Update(UserViewModel user)
         {
-			ApplicationUser applicationUser = UserManager.FindById(user.Id);
-				//FirstName,LastName,Email,PhoneNumber,UserName
-
-			applicationUser.FirstName = user.FirstName;
-			applicationUser.LastName = user.LastName;
-			applicationUser.Email = user.Email;
-			applicationUser.PhoneNumber = user.PhoneNumber;
-			applicationUser.UserName = user.UserName;
-			UserManager.Update(applicationUser);
-			//Här ska vi kunna uppdatera en användares information
-            //ctx.SaveChanges();
+            ApplicationUser applicationUser = UserManager.FindById(user.Id);
+            applicationUser.FirstName = user.FirstName;
+            applicationUser.LastName = user.LastName;
+            applicationUser.Email = user.Email;
+            applicationUser.PhoneNumber = user.PhoneNumber;
+            applicationUser.UserName = user.UserName;
+            UserManager.Update(applicationUser);
         }
     }
 }
