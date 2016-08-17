@@ -21,7 +21,12 @@ namespace LMS.Models
             // Add custom user claims here
             return userIdentity;
         }
-    }
+
+		public string GetFullName()
+		{
+			return string.Format("{0} {1}",FirstName,LastName);
+		}
+	}
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false) { }
