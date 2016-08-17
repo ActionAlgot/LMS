@@ -111,7 +111,8 @@ namespace LMS.Repositories
             var AppUser = UserManager.Users.SingleOrDefault(k => k.Id == Id);
             var user = new UserViewModel
             {
-                FirstName = AppUser.FirstName,
+                Id = AppUser.Id,
+				FirstName = AppUser.FirstName,
                 LastName = AppUser.LastName,
                 PhoneNumber = AppUser.PhoneNumber,
                 Email = AppUser.Email,
@@ -122,10 +123,16 @@ namespace LMS.Repositories
         }
 
         //Ta bort en elev
-        public void Remove(string Id)
+        public bool Remove(string Id)
         {
-            //Här ska vi ta bort en användare
-            //ctx.SaveChanges();
+			ApplicationUser applicationUser = UserManager.FindById(Id);
+			if (applicationUser == null)
+			{
+				return false;
+			}
+			UserManager.Delete(applicationUser);
+            ctx.SaveChanges();
+			return true;
         }
 
         //Uppdatera en elev

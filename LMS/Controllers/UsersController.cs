@@ -72,7 +72,43 @@ namespace LMS.Controllers
             }
             return View(applicationUser);*/
         }
-    
+
+
+
+
+		//FRÅGA OM ANVÄNDAREN SKA TAS BORT
+		// GET: Users/Delete/5
+		public ActionResult Delete(string id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var repo = new UserRepository();
+			UserViewModel user = repo.GetSpecific(id);
+			return View(user);
+		}
+
+
+		//TA BORT PÅ RIKTIGT
+		// POST: Users/Delete/5
+		//[ValidateAntiForgeryToken]
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public ActionResult DeleteConfirmed(string id)
+		{
+			var repo = new UserRepository();
+			if (repo.Remove(id))
+			{
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
+
+
+
+
+
 
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
