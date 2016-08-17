@@ -14,7 +14,7 @@ namespace LMS.Repositories
 {
     public class UserRepository
     {
-        private ApplicationDbContext ctx = new ApplicationDbContext();
+        //private ApplicationDbContext ctx = new ApplicationDbContext();
         private ApplicationUserManager _userManager;
 
         public ApplicationUserManager UserManager
@@ -99,7 +99,6 @@ namespace LMS.Repositories
             if(result.Succeeded)
             {
                 UserManager.AddToRole(user.Id, newUser.Roles);
-                ctx.SaveChanges();
                 return true;
             }
             return false;
@@ -131,14 +130,22 @@ namespace LMS.Repositories
 				return false;
 			}
 			UserManager.Delete(applicationUser);
-            ctx.SaveChanges();
 			return true;
         }
 
         //Uppdatera en elev
-        public void Update(ApplicationUser user)
+        public void Update(UserViewModel user)
         {
-            //Här ska vi kunna uppdatera en användares information
+			ApplicationUser applicationUser = UserManager.FindById(user.Id);
+				//FirstName,LastName,Email,PhoneNumber,UserName
+
+			applicationUser.FirstName = user.FirstName;
+			applicationUser.LastName = user.LastName;
+			applicationUser.Email = user.Email;
+			applicationUser.PhoneNumber = user.PhoneNumber;
+			applicationUser.UserName = user.UserName;
+			UserManager.Update(applicationUser);
+			//Här ska vi kunna uppdatera en användares information
             //ctx.SaveChanges();
         }
     }

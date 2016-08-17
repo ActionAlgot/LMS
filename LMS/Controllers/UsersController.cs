@@ -106,7 +106,29 @@ namespace LMS.Controllers
 		}
 
 
+		public ActionResult Edit(string id)
+		{
+			if (id == null)	   //todo isNullOrEmpty
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var repo = new UserRepository();
+			UserViewModel user = repo.GetSpecific(id);
+			return View(user);
+		}
 
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,PhoneNumber,UserName")] UserViewModel user)
+		{
+			if (ModelState.IsValid)
+			{
+				var repo = new UserRepository();
+				repo.Update(user);
+				return RedirectToAction("Index");
+			}
+			return View(user);
+		}
 
 
 
