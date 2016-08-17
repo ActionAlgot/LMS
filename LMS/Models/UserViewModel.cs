@@ -17,5 +17,16 @@ namespace LMS.Models
 		[Display (Name = "Password")]
 		public string NewPassword { get; set; }
         public string Roles { get; set; }
+
+		public UserViewModel() { }
+		public UserViewModel(ApplicationUser user) {
+			Id = user.Id;
+			FirstName = user.FirstName;
+			LastName = user.LastName;
+			Email = user.Email;
+			PhoneNumber = user.PhoneNumber;
+			UserName = user.UserName;
+			//Roles = user.Roles.ToString();
+		}
     }
 }

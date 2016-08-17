@@ -26,6 +26,18 @@ namespace LMS.Controllers
 			return Json(new { Removed = success }, JsonRequestBehavior.AllowGet);
 		}
 
+		[Authorize(Roles = "Teacher")]
+		public JsonResult GetNonMembers(int Id) {
+			return Json(repo.GetNonMembers(Id).Select(u => new UserViewModel(u)), JsonRequestBehavior.AllowGet);
+		}
+
+		[Authorize(Roles = "Teacher")]
+		public JsonResult GetMembers(int Id) {
+			var klass = repo.GetSpecific(Id);
+			if (klass == null) return null;
+			else return Json(klass.Members.Select(u => new UserViewModel(u)), JsonRequestBehavior.AllowGet);
+		}
+
 		[Authorize(Roles="Teacher")]
 		[HttpGet]
 		public ActionResult Create() {

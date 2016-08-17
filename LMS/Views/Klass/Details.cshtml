@@ -10,9 +10,13 @@
     <h4>Klass</h4>
     <hr />
 
-	<div ng-controller="AddKlassMemberTable" ng-init="KlassId = @Model.Klass.ID; showshit = false">
+	<div ng-controller="KlassMemberTable" @*fuck html, that's why*@
+		 ng-init="KlassId = @Model.Klass.ID; showshit = false; TableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;AddMember(user.Id)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
+
 		<button ng-click="showshit = !showshit">Add members</button>
-		@Html.Partial("StudentAddingPartial", Model.NonMembers)
+		<div ng-show="showshit" ng-init="userList = {data: null}; GetData('getnonmembers?id=' + '@Model.Klass.ID', userList)">
+			@Html.Partial("~/Views/Users/UserListPartial.cshtml")
+		</div>
 	</div>
 
     <dl class="dl-horizontal">
@@ -25,8 +29,11 @@
         </dd>
     </dl>
 
-	<div ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
-		@Html.Partial("KlassMembersListPartial", Model.Klass.Members)
+	<div ng-controller="KlassMemberTable"
+		 ng-init="KlassId = @Model.Klass.ID; TableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;RemoveMember(user.Id)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
+		<div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', userList)">
+			@Html.Partial("~/Views/Users/UserListPartial.cshtml")
+		</div>
 	</div>
 </div>
 

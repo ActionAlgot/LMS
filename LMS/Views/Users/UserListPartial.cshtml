@@ -1,0 +1,50 @@
+﻿
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th />
+        <th>
+            Email
+        </th>
+        <th>
+            Phonenumber
+        </th>
+        <th>
+            Username
+        </th>
+        <th/>
+		<th ng-repeat="shit in TableAppends" />
+    </tr>
+
+    <tr ng-repeat="user in userList.data">
+        <td>
+            {{user.FirstName}}
+        </td>
+        <td>
+            {{user.LastName}}
+        </td>
+        <td>
+            {{user.Email}}
+        </td>
+        <td>
+            {{user.PhoneNumber}}
+        </td>
+        <td>
+            {{user.UserName}}
+        </td>
+        <td>
+			@{
+				var details = Url.Action("Details", "Users", new { id = "{{user.Id}}" });
+				details = HttpUtility.UrlDecode(details);
+				var edit = Url.Action("Edit", "Users", new { id = "{{user.Id}}" });
+				edit = HttpUtility.UrlDecode(edit);
+			}
+
+			<a data-ng-href="@details">Details</a> |
+			<a data-ng-href="@edit">Edit</a>
+        </td>
+		<td ng-repeat="shit in TableAppends" bind-compiled-html="shit" />
+    </tr>
+</table>

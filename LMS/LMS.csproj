@@ -255,11 +255,10 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Klass\Index.cshtml" />
     <Content Include="Views\Klass\Details.cshtml" />
-    <Content Include="Views\Klass\KlassMembersListPartial.cshtml" />
     <Content Include="Views\Klass\Create.cshtml" />
-    <Content Include="Views\Klass\StudentAddingPartial.cshtml" />
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Teacher.cshtml" />
+    <Content Include="Views\Users\UserListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
