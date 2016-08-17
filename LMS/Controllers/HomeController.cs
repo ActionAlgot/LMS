@@ -7,7 +7,9 @@ using System.Web.Mvc;
 namespace LMS.Controllers {
 	public class HomeController : Controller {
 		public ActionResult Index() {
-			return View();
+            if (User.IsInRole("Student")) return View("Student");
+            if (User.IsInRole("Teacher")) return View("Teacher");
+            return View();
 		}
 
 		public ActionResult About() {
