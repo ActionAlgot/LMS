@@ -20,11 +20,6 @@
                 @Html.ActionLink("Learning Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -34,6 +29,17 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Learning Management System</p>
+            <address>
+                StudentConsulting Project<br />
+                Adressgatan 34 B<br />
+                Phone: 070-341 60 61
+            </address>
+
+            <address>
+                <strong>Scrum Master:</strong>   <a href="mailto:peter@kallgren">peter@kallgren.se</a><br />
+                <strong>Developer:</strong>   <a href="mailto:joel.berglund94@gmail.com">joel.berglund94@gmail.com</a><br />
+                <strong>Developer:</strong>   <a href="mailto:greateguy@gmail.com">greateguy@gmail.com</a><br />
+            </address>
         </footer>
     </div>
 
