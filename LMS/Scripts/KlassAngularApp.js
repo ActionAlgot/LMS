@@ -3,26 +3,48 @@
 
 	app.controller('KlassMemberTable', ["$scope", "$http", function ($scope, $http) {
 		$scope.KlassId = null;
-		$scope.TableAppends = [];
-		$scope.alert = function (shit) { alert(shit); };
+		$scope.NonMembers = {data: null};
+		$scope.Members = {data: null};
+		$scope.NonMembersTableAppends = [];
+		$scope.MembersTableAppends = [];
 
-		$scope.AddMember = function (UId) {
+		$scope.PostShit = function (tag) {
+			for (i in taggedShit) if (taggedShit[i].tag == tag)
+				return taggedShit[i];
+		};
+
+		var AddMember = function (UId) {
 			$http.get("../AddKlassMember?Id=" + $scope.KlassId + "&UId=" + UId)
 			.then(function Success(response) {
 				//do UX reloading shit
 			}, function Error(response) {
-				console.log(response);
+				alert(response);
 			});
-		}
+		};
 
-		$scope.RemoveMember = function (UId) {
+		var RemoveMember = function (UId) {
 			$http.get("../RemoveKlassMember?Id=" + $scope.KlassId + "&UId=" + UId)
 			.then(function Success(response) {
 				//do UX reloading shit
 			}, function Error(response) {
 				alert(response);
 			});
-		}
+		};
+
+		var taggedShit = [
+			{
+				tag: "NonMembers",
+				UserList: $scope.NonMembers,
+				TableAppends: $scope.NonMembersTableAppends,
+				Funcs: { AddMember: AddMember }
+			},
+			{
+				tag: "Members",
+				UserList: $scope.Members,
+				TableAppends: $scope.MembersTableAppends,
+				Funcs: { RemoveMember: RemoveMember }
+			}
+		];
 
 		$scope.GetData = function (url, receiver) {
 			$http.get("../" + url)
@@ -32,6 +54,20 @@
 				console.log(response);
 			});
 		}
+	}]);
+
+	app.controller('UserListController', ["$scope", function ($scope) {
+		$scope.tag;
+		$scope.UserList = [];
+		$scope.TableAppends = [];	//raw html list
+		$scope.Funcs = {};		//funcs that will be called from TableAppends
+
+		$scope.GetShit = function () {
+			var response = $scope.PostShit($scope.tag);
+			$scope.UserList = response.UserList;
+			$scope.TableAppends = response.TableAppends;
+			$scope.Funcs = response.Funcs;
+		};
 	}]);
 
 	app.directive("bindCompiledHtml", function ($compile, $timeout) {

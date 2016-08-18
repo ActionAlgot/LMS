@@ -6,33 +6,38 @@
 
 <h2>Details</h2>
 
-<div ng-app="KlassApp">
-    <h4>Klass</h4>
-    <hr />
+<div ng-app="KlassApp" ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
+	<h4>Klass</h4>
+	<hr />
 
-	<div ng-controller="KlassMemberTable" @*fuck html, that's why*@
-		 ng-init="KlassId = @Model.Klass.ID; showshit = false; TableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;AddMember(user.Id)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
+	<div @*fuck html, that's why*@
+		 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;Funcs.AddMember(user.Id)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
 
 		<button ng-click="showshit = !showshit">Add members</button>
-		<div ng-show="showshit" ng-init="userList = {data: null}; GetData('getnonmembers?id=' + '@Model.Klass.ID', userList)">
-			@Html.Partial("~/Views/Users/UserListPartial.cshtml")
+		<div ng-show="showshit" ng-init="GetData('getnonmembers?id=' + '@Model.Klass.ID', NonMembers)">
+			<div ng-controller="UserListController" ng-init="tag='NonMembers'; GetShit()">
+				@Html.Partial("~/Views/Users/UserListPartial.cshtml")
+			</div>
 		</div>
+
 	</div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Klass.Name)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Klass.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Klass.Name)
-        </dd>
-    </dl>
+		<dd>
+			@Html.DisplayFor(model => model.Klass.Name)
+		</dd>
+	</dl>
 
-	<div ng-controller="KlassMemberTable"
-		 ng-init="KlassId = @Model.Klass.ID; TableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;RemoveMember(user.Id)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
-		<div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', userList)">
-			@Html.Partial("~/Views/Users/UserListPartial.cshtml")
+	<div
+		 ng-init="MembersTableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;Funcs.RemoveMember(user.Id)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
+		<div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', Members)">
+			<div ng-controller="UserListController" ng-init="tag='Members'; GetShit()">
+				@Html.Partial("~/Views/Users/UserListPartial.cshtml")
+			</div>
 		</div>
 	</div>
 </div>
