@@ -13,19 +13,25 @@
 				return taggedShit[i];
 		};
 
-		var AddMember = function (UId) {
-			$http.get("../AddKlassMember?Id=" + $scope.KlassId + "&UId=" + UId)
+		var AddMember = function (user) {
+			$http.get("../AddKlassMember?Id=" + $scope.KlassId + "&UId=" + user.Id)
 			.then(function Success(response) {
-				//do UX reloading shit
+				if (response.data.Added) {
+					$scope.NonMembers.data.splice($scope.NonMembers.data.indexOf(user), 1);
+					$scope.Members.data.push(user);
+				}
 			}, function Error(response) {
 				alert(response);
 			});
 		};
 
-		var RemoveMember = function (UId) {
-			$http.get("../RemoveKlassMember?Id=" + $scope.KlassId + "&UId=" + UId)
+		var RemoveMember = function (user) {
+			$http.get("../RemoveKlassMember?Id=" + $scope.KlassId + "&UId=" + user.Id)
 			.then(function Success(response) {
-				//do UX reloading shit
+				if (response.data.Removed) {
+					$scope.Members.data.splice($scope.Members.data.indexOf(user), 1);
+					$scope.NonMembers.data.push(user);
+				}
 			}, function Error(response) {
 				alert(response);
 			});
