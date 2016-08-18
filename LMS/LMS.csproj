@@ -175,8 +175,13 @@
     <Compile Include="Migrations\201608121125101_FirstAndLastNameAddedToUsers.Designer.cs">
       <DependentUpon>201608121125101_FirstAndLastNameAddedToUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608181223564_FileModels.cs" />
+    <Compile Include="Migrations\201608181223564_FileModels.Designer.cs">
+      <DependentUpon>201608181223564_FileModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Klass.cs" />
     <Compile Include="Models\KlassDetailsViewModel.cs" />
@@ -275,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608121125101_FirstAndLastNameAddedToUsers.resx">
       <DependentUpon>201608121125101_FirstAndLastNameAddedToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608181223564_FileModels.resx">
+      <DependentUpon>201608181223564_FileModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

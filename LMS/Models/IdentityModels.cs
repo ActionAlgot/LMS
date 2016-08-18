@@ -11,6 +11,9 @@ namespace LMS.Models
     public class ApplicationUser : IdentityUser
     {
 		public virtual ICollection<Klass> Klasses { get; set; }
+		public virtual ICollection<SubmissionFile> SubmittedFiles { get; set; }
+		public virtual ICollection<SharedFile> SharedFiles { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -32,6 +35,8 @@ namespace LMS.Models
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false) { }
 
 		public DbSet<Klass> Klasses { get; set; }
+		public DbSet<SharedFile> SharedFiles { get; set; }
+		public DbSet<SubmissionFile> SubmissionFiles { get; set; }
 
         public static ApplicationDbContext Create() {
             return new ApplicationDbContext();
