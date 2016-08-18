@@ -68,21 +68,21 @@ using System.Linq;
 			}
 
 			List<SharedFile> SharedFilesSeed = new List<SharedFile>(){
-				new SharedFile{ID = 1, FileName = "crap.txt", ContentType = MimeMapping.GetMimeMapping("crap.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
-				new SharedFile{ID = 2, FileName = "crap2_crapHarder.txt", ContentType = MimeMapping.GetMimeMapping("crap2_crapHarder.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fucked the lazy crap"), Uploader = userManager.FindByName(studs[2].UserName)},
-				new SharedFile{ID = 3, FileName = "crap3.txt", ContentType = MimeMapping.GetMimeMapping("crap3.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the third brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)},
-				new SharedFile{ID = 4, FileName = "crap4.txt", ContentType = MimeMapping.GetMimeMapping("crap4.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the fourth brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)},
-				new SharedFile{ID = 5, FileName = "crap5.txt", ContentType = MimeMapping.GetMimeMapping("crap5.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the something brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
-				new SharedFile{ID = 6, FileName = "crap6.txt", ContentType = MimeMapping.GetMimeMapping("crap6.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the sixth brown fuck you"), Uploader = userManager.FindByName(techs[0].UserName)}
+				new SharedFile{ ID = 1, FileName = "crap.txt", ContentType = MimeMapping.GetMimeMapping("crap.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
+				new SharedFile{ ID = 2, FileName = "crap2_crapHarder.txt", ContentType = MimeMapping.GetMimeMapping("crap2_crapHarder.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fucked the lazy crap"), Uploader = userManager.FindByName(studs[2].UserName)},
+				new SharedFile{ ID = 3, FileName = "crap3.txt", ContentType = MimeMapping.GetMimeMapping("crap3.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the third brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)},
+				new SharedFile{ ID = 4, FileName = "crap4.txt", ContentType = MimeMapping.GetMimeMapping("crap4.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the fourth brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)},
+				new SharedFile{ ID = 5, FileName = "crap5.txt", ContentType = MimeMapping.GetMimeMapping("crap5.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the something brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
+				new SharedFile{ ID = 6, FileName = "crap6.txt", ContentType = MimeMapping.GetMimeMapping("crap6.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the sixth brown fuck you"), Uploader = userManager.FindByName(techs[0].UserName)}
 			};
 
 			List<SubmissionFile> SubmissionFilesSeed = new List<SubmissionFile>(){
-				new SubmissionFile{FileName = "shit.txt", ContentType = MimeMapping.GetMimeMapping("shit.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fuck you"), Uploader = userManager.FindByName(studs[2].UserName)},
-				new SubmissionFile{FileName = "shit2_shitHarder.txt", ContentType = MimeMapping.GetMimeMapping("shit2_shitHarder.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fucked the lazy shit"), Uploader = userManager.FindByName(studs[3].UserName)},
-				new SubmissionFile{FileName = "shit3.txt", ContentType = MimeMapping.GetMimeMapping("shit3.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the third brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
-				new SubmissionFile{FileName = "shit4.txt", ContentType = MimeMapping.GetMimeMapping("shit4.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the fourth brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
-				new SubmissionFile{FileName = "shit5.txt", ContentType = MimeMapping.GetMimeMapping("shit5.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the something brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)},
-				new SubmissionFile{FileName = "shit6.txt", ContentType = MimeMapping.GetMimeMapping("shit6.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the sixth brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)}
+				new SubmissionFile{ ID = 1, FileName = "shit.txt", ContentType = MimeMapping.GetMimeMapping("shit.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fuck you"), Uploader = userManager.FindByName(studs[2].UserName)},
+				new SubmissionFile{ ID = 2, FileName = "shit2_shitHarder.txt", ContentType = MimeMapping.GetMimeMapping("shit2_shitHarder.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the quick brown fucked the lazy shit"), Uploader = userManager.FindByName(studs[3].UserName)},
+				new SubmissionFile{ ID = 3, FileName = "shit3.txt", ContentType = MimeMapping.GetMimeMapping("shit3.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the third brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
+				new SubmissionFile{ ID = 4, FileName = "shit4.txt", ContentType = MimeMapping.GetMimeMapping("shit4.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the fourth brown fuck you"), Uploader = userManager.FindByName(studs[0].UserName)},
+				new SubmissionFile{ ID = 5, FileName = "shit5.txt", ContentType = MimeMapping.GetMimeMapping("shit5.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the something brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)},
+				new SubmissionFile{ ID = 6, FileName = "shit6.txt", ContentType = MimeMapping.GetMimeMapping("shit6.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the sixth brown fuck you"), Uploader = userManager.FindByName(studs[1].UserName)}
 			};
 
 			var klasses = new List<Klass>() {
