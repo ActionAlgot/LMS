@@ -221,7 +221,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\UploadModule.js" />
-    <Content Include="Scripts\UserListController.js" />
+    <Content Include="Scripts\UserListModule.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
