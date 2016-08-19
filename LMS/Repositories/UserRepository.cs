@@ -66,25 +66,10 @@ namespace LMS.Repositories
 
 
         //Lista alla användare
-        public List<UserViewModel> GetAll()
-        {
-            //Flytta den data vi vill ha från usermanager till en viewmodel.
-            List<UserViewModel> users = new List<UserViewModel>();
-            var userList = UserManager.Users.ToList<ApplicationUser>();
-            foreach (ApplicationUser AppUser in userList)
-            {
-                var user = new UserViewModel
-                {
-                    Id = AppUser.Id,
-                    FirstName = AppUser.FirstName,
-                    LastName = AppUser.LastName,
-                    Email = AppUser.Email,
-                    PhoneNumber = AppUser.PhoneNumber,
-                    UserName = AppUser.UserName
-                };
-                users.Add(user);
-            }
-            return users.OrderBy(o => o.LastName).ToList();
+        public IEnumerable<UserViewModel> GetAll() {
+			return UserManager.Users.ToList()
+				.Select(u => new UserViewModel(u))
+				.OrderBy(o => o.LastName);
         }
 
         //Lista alla elever

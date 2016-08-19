@@ -30,11 +30,21 @@ using System.Linq;
 				role.Name = "Student";
 				roleManager.Create(role);
 			}
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
+            }
 
-			UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(
 				new UserStore<ApplicationUser>(context));
 
-			var studs = new List<ApplicationUser>(){
+            var admins = new List<ApplicationUser>(){
+                new ApplicationUser { UserName = "admin@admin.com", Email = "admin@admin.com", LastName = "Administratör", FirstName = "(ej namngiven)", PhoneNumber ="070-3416061" }
+            };
+
+            var studs = new List<ApplicationUser>(){
 				new ApplicationUser { UserName = "test2@test.com", Email = "test2@test.com", LastName = "Andersson", FirstName = "Bengt", PhoneNumber ="070-1234567"},
 				new ApplicationUser { UserName = "stud2@test.com", Email = "stud2@test.com", LastName = "Bengtsson", FirstName = "Sandra", PhoneNumber ="070-1234568"},
 				new ApplicationUser { UserName = "stud3@test.com", Email = "stud3@test.com", LastName = "Dahl", FirstName = "Lena", PhoneNumber ="070-1234569"},
@@ -51,7 +61,17 @@ using System.Linq;
 				new ApplicationUser { UserName = "teach3@test.com", Email = "teach3@test.com", LastName = "Österberg", FirstName = "Monica", PhoneNumber ="070-1234578"}
 			};
 
-			foreach(var t in techs){
+            foreach (var a in admins)
+            {
+                var result = userManager.Create(a, "Admin@123");
+                if (result.Succeeded)
+                {
+                    var user = userManager.FindByName(a.UserName);
+                    userManager.AddToRole(user.Id, "Admin");
+                }
+            }
+
+            foreach (var t in techs){
 				var result = userManager.Create(t, "Password@123");
 				if (result.Succeeded) {
 					var user = userManager.FindByName(t.UserName);

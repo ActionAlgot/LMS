@@ -20,6 +20,10 @@ namespace LMS.Controllers
             return View(repo.GetAll());
         }
 
+		public JsonResult GetAll() {
+			var repo = new UserRepository();
+			return Json(repo.GetAll(), JsonRequestBehavior.AllowGet);
+		}
 		
 		public ActionResult Students()
 		{
