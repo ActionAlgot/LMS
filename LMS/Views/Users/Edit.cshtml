@@ -68,7 +68,11 @@
 
 <div>
     @*@Html.ActionLink("Back to List", "Index")*@
-	@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })
+	
+	<input type="button" value=" Back " onclick="history.go(-1);return false;">
+	
+	@*@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })*@
+
 </div>
 
 @section Scripts {
