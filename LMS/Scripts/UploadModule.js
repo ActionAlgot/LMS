@@ -23,7 +23,7 @@
 		};
 	}]);
 
-	var shuMod = angular.Module('SharedUploadModule', ['UploadModule']);
+	var shuMod = angular.module('SharedUploadModule', ['UploadModule']);
 	shuMod.controller('SharedUploadController', ['$scope', function ($scope) {
 		/*
 		$scope.Upload = function () {
@@ -31,7 +31,7 @@
 		}*/
 	}]);
 
-	var suuMod = angular.Module('SubmitUploadModule', ['UploadModule']);
+	var suuMod = angular.module('SubmitUploadModule', ['UploadModule']);
 	suuMod.controller('SubmitUploadController', ['$scope', function ($scope) {
 		/*
 		$scope.Upload = function () {
