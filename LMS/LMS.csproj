@@ -220,6 +220,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\UploadModule.js" />
     <Content Include="Scripts\UserListController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -266,6 +267,8 @@
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Teacher.cshtml" />
     <Content Include="Views\Users\UserListPartial.cshtml" />
+    <Content Include="Views\Files\Upload.cshtml" />
+    <Content Include="Views\SharedFiles\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
