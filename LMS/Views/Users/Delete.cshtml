@@ -59,9 +59,10 @@
 			@Html.AntiForgeryToken()
 
 			<div class="form-actions no-color">
-				<input type="submit" value="Delete" class="btn btn-default" /> |
-				@Html.ActionLink("Back to List", "Index")
 				
+				<input type="submit" value="Delete" href="@Request.Url.AbsoluteUri" class="btn btn-default" /> |
+				@Html.ActionLink("Back to List", "Index")
+				@*@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })*@
 			</div>
     }
 	</div>

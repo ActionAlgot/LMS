@@ -8,7 +8,14 @@ using System.Data.Entity;
 namespace LMS.Repositories {
 	public class FileRepository<T> where T : File {
 		private ApplicationDbContext ctx = new ApplicationDbContext();
-		private DbSet<T> Files { get { return (DbSet<T>)((typeof(T).Equals(typeof(SharedFile))) ? (IQueryable<File>)ctx.SharedFiles : (IQueryable<File>) ctx.SubmissionFiles); } }
+		private DbSet<T> Files {
+			get { 
+				return (DbSet<T>)
+					((typeof(T).Equals(typeof(SharedFile)))
+					? (IQueryable<T>) ctx.SharedFiles
+					: (IQueryable<T>) ctx.SubmissionFiles);
+			}
+		}
 
 		public File GetSpecific(int ID) {
 			return Files.FirstOrDefault(f => f.ID == ID);

@@ -1,21 +1,19 @@
 ﻿(function () {
-	var app = angular.module('UserListApp', []);
+	var app = angular.module('UserListModule', []);
 
-	app.controller('UserListController', [$scope, function ($scope) {
+	app.controller('UserListController', ["$scope", function ($scope) {
 		$scope.tag;
+		$scope.UserList = [];
 		$scope.TableAppends = [];	//raw html list
-		$scope.TableFuncs = {};		//funcs that will be called from TableAppends
+		$scope.Funcs = {};		//funcs that will be called from TableAppends
 
-		$scope.init = function () {
+		$scope.GetShit = function () {
 			var response = $scope.PostShit($scope.tag);
-			$scope.TableAppends = response.tableAppends;
-			$scope.TableFuncs = response.funcs;
+			$scope.UserList = response.UserList;
+			$scope.TableAppends = response.TableAppends;
+			$scope.Funcs = response.Funcs;
 		};
 	}]);
-
-	app.service('UserListService', function () {
-
-	});
 
 	app.directive("bindCompiledHtml", function ($compile, $timeout) {
 		return {
