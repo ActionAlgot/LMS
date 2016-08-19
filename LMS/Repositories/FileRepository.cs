@@ -26,5 +26,10 @@ namespace LMS.Repositories {
 			ctx.SaveChanges();
 		}
 
+		public void Remove(T file) {
+			Files.Remove(file);
+			ctx.SaveChanges();
+		}
+
 	}
 }
