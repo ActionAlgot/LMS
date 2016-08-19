@@ -106,7 +106,7 @@ namespace LMS.Controllers
 		}
 
 
-		public ActionResult Edit(string id)
+		public ActionResult Edit(string id, string returnUrl)
 		{
 			if (id == null)	   //todo isNullOrEmpty
 			{
@@ -114,18 +114,32 @@ namespace LMS.Controllers
 			}
 			var repo = new UserRepository();
 			UserViewModel user = repo.GetSpecific(id);
+			ViewBag.ReturnUrl = returnUrl;
 			return View(user);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,PhoneNumber,UserName")] UserViewModel user)
+		public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,PhoneNumber,UserName")] UserViewModel user, string returnUrl)
 		{
 			if (ModelState.IsValid)
 			{
 				var repo = new UserRepository();
 				repo.Update(user);
-				return RedirectToAction("Index");
+				//return RedirectToAction("Index");
+				//Response.Cookies.Get("UserEditLocation") == "Klass"
+				//var value=Request.Cookies["key"].Value
+				var value = Request.Cookies["UserEditLocation"].Value;
+
+				return Redirect(returnUrl);
+				/*if (value == "Klass")
+				{
+					return RedirectToRoute(new { controller = "Klass", action = "Index" });
+				}
+				else
+				{
+					return RedirectToRoute(new { controller = "Users", action = "Index" });
+				} */
 			}
 			return View(user);
 		}

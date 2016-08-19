@@ -1,4 +1,5 @@
-﻿@model LMS.Models.KlassDetailsViewModel
+﻿@using LMS.Models
+@model LMS.Models.KlassDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -43,6 +44,6 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Klass.ID }) |
+	@Html.ActionLink("Edit", "Edit", "Index")|
     @Html.ActionLink("Back to List", "Index")
 </p>

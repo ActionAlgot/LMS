@@ -13,7 +13,12 @@ namespace LMS.Controllers
         // GET: Klass
 		[Authorize(Roles="Teacher")]
         public ActionResult Index(){
-            return View(repo.GetAll());
+
+			HttpCookie UserEditLocation = new HttpCookie("UserEditLocation");
+			UserEditLocation.Value = "Klass";
+			Response.Cookies.Add(UserEditLocation);
+
+			return View(repo.GetAll());
         }
 
 		public ActionResult Details(int Id) {
