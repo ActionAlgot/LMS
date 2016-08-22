@@ -140,11 +140,11 @@ using System.Linq;
 			};
 
 			var comments = new List<Comment>() {
-				new Comment{ID = 1, Text = "F-", Commenter = userManager.FindByName(techs[0].UserName), Submission = SubmissionFilesSeed[4]},
-				new Comment{ID = 2, Text = "This is awful", Commenter = userManager.FindByName(techs[0].UserName), Submission = SubmissionFilesSeed[3]},
-				new Comment{ID = 3, Text = "sgfdsgjbnksdf", Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[1]},
-				new Comment{ID = 4, Text = "You suck", Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[5]},
-				new Comment{ID = 5, Text = "Piss poor", Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[3]},
+				new Comment{ID = 1, Text = "F-", Date = new DateTime(2010, 11, 10), Read = false, Commenter = userManager.FindByName(techs[0].UserName), Submission = SubmissionFilesSeed[4]},
+				new Comment{ID = 2, Text = "This is awful", Date = new DateTime(1999, 12, 23), Read = false, Commenter = userManager.FindByName(techs[0].UserName), Submission = SubmissionFilesSeed[3]},
+				new Comment{ID = 3, Text = "sgfdsgjbnksdf", Date = new DateTime(2001, 1, 9), Read = false, Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[1]},
+				new Comment{ID = 4, Text = "You suck", Date = new DateTime(1812, 4, 6), Read = false, Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[5]},
+				new Comment{ID = 5, Text = "Piss poor", Date = new DateTime(2016, 5, 19), Read = false, Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[3]},
 			};
 
 			foreach (var k in klasses) context.Klasses.AddOrUpdate(k);
