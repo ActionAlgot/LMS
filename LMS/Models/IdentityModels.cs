@@ -13,6 +13,7 @@ namespace LMS.Models
 		public virtual ICollection<Klass> Klasses { get; set; }
 		public virtual ICollection<SubmissionFile> SubmittedFiles { get; set; }
 		public virtual ICollection<SharedFile> SharedFiles { get; set; }
+		public virtual ICollection<Comment> Comments { get; set; }	//only teacher should have this
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -37,6 +38,7 @@ namespace LMS.Models
 		public DbSet<Klass> Klasses { get; set; }
 		public DbSet<SharedFile> SharedFiles { get; set; }
 		public DbSet<SubmissionFile> SubmissionFiles { get; set; }
+		public DbSet<Comment> Comments { get; set; }
 
         public static ApplicationDbContext Create() {
             return new ApplicationDbContext();

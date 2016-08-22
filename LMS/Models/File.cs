@@ -26,6 +26,6 @@ namespace LMS.Models {
 	public class SharedFile : File { }
 
 	public class SubmissionFile : File {
-		//public virtual ICollection<Comment> Comments {get; set; }
+		public virtual ICollection<Comment> Comments {get; set; }
 	}
 }

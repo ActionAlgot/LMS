@@ -139,7 +139,16 @@ using System.Linq;
 				}
 			};
 
+			var comments = new List<Comment>() {
+				new Comment{ID = 1, Text = "F-", Commenter = userManager.FindByName(techs[0].UserName), Submission = SubmissionFilesSeed[4]},
+				new Comment{ID = 2, Text = "This is awful", Commenter = userManager.FindByName(techs[0].UserName), Submission = SubmissionFilesSeed[3]},
+				new Comment{ID = 3, Text = "sgfdsgjbnksdf", Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[1]},
+				new Comment{ID = 4, Text = "You suck", Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[5]},
+				new Comment{ID = 5, Text = "Piss poor", Commenter = userManager.FindByName(techs[1].UserName), Submission = SubmissionFilesSeed[3]},
+			};
+
 			foreach (var k in klasses) context.Klasses.AddOrUpdate(k);
+			foreach (var c in comments) context.Comments.AddOrUpdate(c);
 
 			context.SaveChanges();
         }
