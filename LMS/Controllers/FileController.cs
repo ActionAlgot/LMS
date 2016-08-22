@@ -9,9 +9,15 @@ using System.Web.Mvc;
 namespace LMS.Controllers {
     public abstract class FileController<T> : Controller where T : File {
 		protected FileRepository<T> repo = new FileRepository<T>();
-		public FileContentResult View(int ID) {
+
+		public FileContentResult Download(int ID) {
 			var file = repo.GetSpecific(ID);
 			return File(file.Content, file.ContentType);
+		}
+
+		public ViewResult Index(int KlassID) {
+			ViewBag.KlassName = repo.GetKlassName(KlassID);
+			return View(repo.GetKlassFiles(KlassID).ToList());
 		}
     }
 }
