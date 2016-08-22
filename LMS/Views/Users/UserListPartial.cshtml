@@ -43,8 +43,9 @@
 			}
 
 			<a data-ng-href="@details">Details</a> |
-			<a data-ng-href="@edit">Edit</a>
+			<a data-ng-href="@edit">Edit</a> |
+			<a ng-repeat="shit in TableAppends" bind-compiled-html="shit"> </a>
         </td>
-		<td ng-repeat="shit in TableAppends" bind-compiled-html="shit" />
+		<td />
     </tr>
 </table>

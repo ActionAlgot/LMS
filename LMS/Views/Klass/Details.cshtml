@@ -12,7 +12,7 @@
 	<hr />
 
 	<div @*fuck html, that's why*@
-		 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;Funcs.AddMember(user)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
+		 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.AddMember(user)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
 
 		<button ng-click="showshit = !showshit">Add members</button>
 		<div ng-show="showshit" ng-init="GetData('getnonmembers?id=' + '@Model.Klass.ID', NonMembers)">
@@ -33,8 +33,7 @@
 		</dd>
 	</dl>
 
-	<div
-		 ng-init="MembersTableAppends.push('&lt;td&gt;&lt;button ng-click=&quot;Funcs.RemoveMember(user)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
+	<div ng-init="MembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.RemoveMember(user)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
 		<div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', Members)">
 			<div ng-controller="UserListController" ng-init="tag='Members'; GetShit()">
 				@Html.Partial("~/Views/Users/UserListPartial.cshtml")
