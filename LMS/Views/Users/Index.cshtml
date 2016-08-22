@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 @{
-	var delete = Url.Action("Delete", "Users", new { id = "{{user.Id}}" });
+	var delete = Url.Action("Delete", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri });
 	delete = HttpUtility.UrlDecode(delete);
 }
 <div ng-app="FuckItApp" ng-controller="BasicShitController" ng-init="GetData('GetAll'); TableAppendages.push('&lt;td&gt;&lt;a data-ng-href=&quot;@delete&quot;&gt;Delete&lt;a&gt;&lt;td&gt;')">
