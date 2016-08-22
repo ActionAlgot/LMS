@@ -11,7 +11,11 @@
 	<h4>Klass</h4>
 	<hr />
 	@Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new {})
-
+	@{
+		if (HttpContext.Current.User.IsInRole("Teacher")) {
+			<span> | @Html.ActionLink("Submission files", "Index", "Submission", new { KlassID = @Model.Klass.ID }, new { })</span>
+		}
+	}
 	<div @*fuck html, that's why*@
 		 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.AddMember(user)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
 

@@ -283,10 +283,10 @@
     <Content Include="Views\SharedFiles\Upload.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\SharedFiles\Index.cshtml" />
+    <Content Include="Views\Submission\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Submission\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
