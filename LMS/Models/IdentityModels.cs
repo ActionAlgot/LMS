@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LMS.Models
 {
@@ -11,9 +12,18 @@ namespace LMS.Models
     public class ApplicationUser : IdentityUser
     {
 		public virtual ICollection<Klass> Klasses { get; set; }
-		public virtual ICollection<SubmissionFile> SubmittedFiles { get; set; }
+		public virtual ICollection<SubmissionFile> SubmittedFiles { get; set; }	//only student should have this
 		public virtual ICollection<SharedFile> SharedFiles { get; set; }
-		public virtual ICollection<Comment> Comments { get; set; }	//only teacher should have this
+		public virtual ICollection<Comment> SubmittedComments { get; set; }	//only teacher should have this
+
+		public IEnumerable<Comment> Comments {
+			get {
+				return SubmittedFiles
+					.Where(f => f.Comments.Count != 0)
+					.SelectMany(x => x.Comments);
+			}
+		}
+		public IEnumerable<Comment> UnreadComments { get { return Comments.Where(c => !c.Read); } }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }

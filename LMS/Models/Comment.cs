@@ -11,6 +11,8 @@ namespace LMS.Models {
 		public int ID { get; set; }
 
 		public string Text { get; set; }
+		public bool Read { get; set; }
+		public DateTime Date { get; set; }
 
 		public string CommenterID { get; set; }
 		public int SubmissionID { get; set; }

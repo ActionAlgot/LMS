@@ -165,6 +165,7 @@
     <Compile Include="Controllers\KlassController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\SubmissionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,6 +185,10 @@
     <Compile Include="Migrations\201608221108185_CommentModel.cs" />
     <Compile Include="Migrations\201608221108185_CommentModel.Designer.cs">
       <DependentUpon>201608221108185_CommentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608221219333_CommentDateAndRead.cs" />
+    <Compile Include="Migrations\201608221219333_CommentDateAndRead.Designer.cs">
+      <DependentUpon>201608221219333_CommentDateAndRead.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -278,6 +283,7 @@
     <Content Include="Views\SharedFiles\Upload.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\SharedFiles\Index.cshtml" />
+    <Content Include="Views\Submission\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608221108185_CommentModel.resx">
       <DependentUpon>201608221108185_CommentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608221219333_CommentDateAndRead.resx">
+      <DependentUpon>201608221219333_CommentDateAndRead.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
