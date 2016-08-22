@@ -9,6 +9,7 @@
 			for (i in taggedShit) if (taggedShit[i].tag == tag)
 				return taggedShit[i];
 		};
+		$scope.TableAppendages = [];
 
 		var fuckWhatever = { data: [] };
 
@@ -24,7 +25,7 @@
 		var taggedShit = [{
 				tag: "Whatever",
 				UserList: fuckWhatever,
-				TableAppends: [],
+				TableAppends: $scope.TableAppendages,
 				Funcs: { }
 			}]
 

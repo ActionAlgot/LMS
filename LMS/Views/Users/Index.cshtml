@@ -9,7 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div ng-app="FuckItApp" ng-controller="BasicShitController" ng-init="GetData('GetAll')">
+@{
+	var delete = Url.Action("Delete", "Users", new { id = "{{user.Id}}" });
+	delete = HttpUtility.UrlDecode(delete);
+}
+<div ng-app="FuckItApp" ng-controller="BasicShitController" ng-init="GetData('GetAll'); TableAppendages.push('&lt;td&gt;&lt;a data-ng-href=&quot;@delete&quot;&gt;Delete&lt;a&gt;&lt;td&gt;')">
 	<div ng-controller="UserListController" ng-init="tag='Whatever'; GetShit()">
 		@Html.Partial("UserListPartial")
 	</div>
