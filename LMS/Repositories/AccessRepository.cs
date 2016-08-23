@@ -36,10 +36,10 @@ namespace LMS.Repositories
         }
 
         //Kolla om en student är med i en klass
-        public dynamic UserAttendsKlass(string userId, string klassName)
+        public dynamic UserAttendsKlass(string userId, int KlassId)
         {
-            Debug.WriteLine("Klass {0} och User {1}", klassName, userId);
-            Klass klass = ctx.Klasses.SingleOrDefault(k => k.Name == klassName);
+            Debug.WriteLine("Klass {0} och User {1}", KlassId, userId);
+            Klass klass = ctx.Klasses.SingleOrDefault(k => k.ID == KlassId);
             ApplicationUser appUser = ctx.Users.SingleOrDefault(u => u.Id == userId);
             return klass.Members.Any(u => u.Id == appUser.Id);
         }

@@ -12,5 +12,10 @@ namespace LMS.Controllers
         {
             return View("AccessDenied");
         }
+
+        public ActionResult NotYourKlass()
+        {
+            return View("NotYourKlass");
+        }
     }
 }

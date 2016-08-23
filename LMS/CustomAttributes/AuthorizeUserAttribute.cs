@@ -36,9 +36,33 @@ namespace LMS.CustomAttributes
             AccessRepository accessRepo = new AccessRepository();
 
             //TODO: Ska komma från adressfältet eller dylikt
-            string accessedKlassName = "k2";
+            //Här försöker jag hämta ett numerisk id från slutet av requestadressen
+            //bara om requestadressen innehåller ordet Klass
+            //Detta är ingen bra lösning känns det som
+            var requestedAdress = httpContext.Request.RawUrl;
+            char[] delimiter = { '/' };
+            string[] parts = requestedAdress.Split(delimiter);
+            string KlassIdFromUrl = "";
+            if (parts.Contains("Klass"))
+            {
+                KlassIdFromUrl = parts[parts.Count()-1];
+            }
 
-            bool UserIsInKlass = accessRepo.UserAttendsKlass(httpContext.User.Identity.GetUserId(), accessedKlassName);
+            Debug.WriteLine("Klass som ska testas: {0}", KlassIdFromUrl);
+
+            //tills det funkar
+            //string KlassIdFromUrl = "2";
+
+            int KlassId;
+            bool successfullyParsed = int.TryParse(KlassIdFromUrl, out KlassId);
+            if (!successfullyParsed)
+            {
+                return false;
+            }
+
+            Debug.WriteLine("Parsed to: {0}", KlassId);
+
+            bool UserIsInKlass = accessRepo.UserAttendsKlass(httpContext.User.Identity.GetUserId(), KlassId);
 
             //Användaren vill veta om usern attends a klass ( [Student(attendsKlass = true)] )
             if (AttendsKlass)
@@ -71,7 +95,7 @@ namespace LMS.CustomAttributes
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary( new { controller = "Error", action = "AccessDenied" }));
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary( new { controller = "Error", action = "NotYourKlass" }));
         }
     }
 }
