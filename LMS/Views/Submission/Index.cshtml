@@ -13,6 +13,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ContentType)
         </th>
+		<th>
+			Latest comment
+		</th>
         <th />
     </tr>
 
@@ -28,6 +31,15 @@
             @Html.DisplayFor(modelItem => item.ContentType)
         </td>
         <td>
+			@{
+			var LatestComment = item.Comments.Count == 0
+				? "No comments"
+				: item.Comments.Count == 1
+				? item.Comments.First().Text
+				: item.Comments.Aggregate((c1, c2) => (c1.Date > c2.Date) ? c1 : c2).Text;
+			}
+			@LatestComment
+		</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
