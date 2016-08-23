@@ -5,12 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Diagnostics;
 
 /* Work in progress */
 namespace LMS.Repositories
 {
     public class AccessRepository
     {
+        private ApplicationDbContext ctx;
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {
@@ -20,6 +22,12 @@ namespace LMS.Repositories
 
         public AccessRepository()
         {
+            this.ctx = new ApplicationDbContext();
+        }
+
+        public ApplicationUserManager GetUserManager()
+        {
+            return this.UserManager;
         }
 
         public AccessRepository(ApplicationUserManager userManager)
@@ -27,29 +35,13 @@ namespace LMS.Repositories
             UserManager = userManager;
         }
 
-        //Förenklingar av rättighetskontroll
-        public dynamic StudentAttendsKlass(ApplicationUser user, Klass klass)
+        //Kolla om en student är med i en klass
+        public dynamic UserAttendsKlass(string userId, string klassName)
         {
-            if (IsAdmin(user)) return true;
-            return new NotImplementedException();
-        }
-
-        public dynamic KlassHasStudent(Klass klass, ApplicationUser user)
-        {
-            if (IsAdmin(user)) return true;
-            return new NotImplementedException();
-        }
-
-        public dynamic TeacherLeadsKlass(ApplicationUser user, Klass klass)
-        {
-            if (IsAdmin(user)) return true;
-            return new NotImplementedException();
-        }
-
-        public dynamic KlassHasTeacher(ApplicationUser user, Klass klass)
-        {
-            if (IsAdmin(user)) return true;
-            return new NotImplementedException();
+            Debug.WriteLine("Klass {0} och User {1}", klassName, userId);
+            Klass klass = ctx.Klasses.SingleOrDefault(k => k.Name == klassName);
+            ApplicationUser appUser = ctx.Users.SingleOrDefault(u => u.Id == userId);
+            return klass.Members.Any(u => u.Id == appUser.Id);
         }
 
         public bool IsAdmin(ApplicationUser user)
