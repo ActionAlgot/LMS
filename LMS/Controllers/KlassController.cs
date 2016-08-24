@@ -22,7 +22,7 @@ namespace LMS.Controllers
 			return View(repo.GetAll());
         }
 
-        [Student(AttendsKlass = true, KlassIDParamPos = 2)] 
+        [AttendsKlass(ParamFrom = "2")]
         public ActionResult Details(int Id) {
 			return View(new KlassDetailsViewModel(repo.GetSpecific(Id), repo.GetNonMembers(Id)));
 		}
@@ -33,13 +33,13 @@ namespace LMS.Controllers
 			return Json(new { Removed = success }, JsonRequestBehavior.AllowGet);
 		}
 
-		[Student(AttendsKlass = true)]
-		public JsonResult GetNonMembers(int Id) {
+        [AttendsKlass(ParamFrom = "2")]
+        public JsonResult GetNonMembers(int Id) {
 			return Json(repo.GetNonMembers(Id).Select(u => new UserViewModel(u)), JsonRequestBehavior.AllowGet);
 		}
 
-		[Student(AttendsKlass = true)]
-		public JsonResult GetMembers(int Id) {
+        [AttendsKlass(ParamFrom = "2")]
+        public JsonResult GetMembers(int Id) {
 			var klass = repo.GetSpecific(Id);
 			if (klass == null) return null;
 			else return Json(klass.Members.Select(u => new UserViewModel(u)), JsonRequestBehavior.AllowGet);
