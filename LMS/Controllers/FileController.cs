@@ -15,7 +15,7 @@ namespace LMS.Controllers {
 
 		public FileContentResult Download(int ID) {
 			var file = repo.GetSpecific(ID);
-			return File(file.Content, file.ContentType);
+			return File(file.Content, file.ContentType, file.FileName);
 		}
 
 		public ViewResult Index(int KlassID) {
@@ -41,34 +41,16 @@ namespace LMS.Controllers {
 					data = binaryReader.ReadBytes(file.ContentLength);
 				}
 
-				string FileName = fileName;
-				string ContentType = "";
-				byte[]  Content ;
-				string Uploader = User.Identity.GetUserId();
-
-
-				// Save to database
-				//Document doc = new Document()
-				//{
-				//	FileName = fileName,
-				//	Data = data,
-				//	ContentType = contentType,
-				//	ContentLength = contentLength,
-				//};
-				//dataLayer.SaveDocument(doc);
 				T dgf = (T)Activator.CreateInstance(typeof(T), new object[] { });// {FileName = "aaaa" , ContentType = MimeMapping.GetMimeMapping("shit6.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the sixth brown fuck you"), Uploader;
 				dgf.FileName = fileName;
 				dgf.ContentType = contentType;
 				dgf.UploaderID = User.Identity.GetUserId();
 				dgf.KlassID = Int32.Parse(KlassID);
 				dgf.Content = data;
-				//Shared = new List<SharedFile>(){SharedFilesSeed[1], SharedFilesSeed[4]};
-				//object Submission = new List<SubmissionFile>() { dgf };
 
 				// Show success ...
 				repo.Add(dgf);
 				return RedirectToAction("Index", new { KlassID = KlassID });
-		
 			}
 			else
 			{
