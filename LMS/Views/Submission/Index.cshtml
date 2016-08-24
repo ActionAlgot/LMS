@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<LMS.Models.SubmissionFile>
 
 <h2>Klass @ViewBag.KlassName submitted files</h2>
-<table class="table" ng-app="CommentingApp">
+
+<table class="table">
     <tr>
         <th>
             Submitter
@@ -15,40 +16,39 @@
 		<th>
 			Latest comment
 		</th>
-        <th>
-			New comment
-		</th>
+        <th />
     </tr>
 
 @foreach (var item in Model) {
-	<tr ng-controller="CommentingController">
-		<td>
-			@Html.DisplayFor(modelItem => item.Uploader.UserName)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Uploader.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContentType)
+        </td>
+        <td>
+			@{
+			var LatestComment = item.Comments.Count == 0
+				? "No comments"
+				: item.Comments.Count == 1
+				? item.Comments.First().Text
+				: item.Comments.Aggregate((c1, c2) => (c1.Date > c2.Date) ? c1 : c2).Text;
+			}
+			@LatestComment
 		</td>
-		<td>
-			@Html.DisplayFor(modelItem => item.FileName)
-		</td>
-		<td>
-			@Html.DisplayFor(modelItem => item.ContentType)
-		</td>
-		@{
-		var LatestComment = item.Comments.Count == 0
-			? "No comments"
-			: item.Comments.Count == 1
-			? item.Comments.First().Text
-			: item.Comments.Aggregate((c1, c2) => (c1.Date > c2.Date) ? c1 : c2).Text;
-		}
-		<td ng-init="LatestCommentText='@LatestComment'">
-			{{LatestCommentText}}
-		</td>
-		<td ng-init ="Comment = { Text: '', SubmissionID: @item.ID }">
-			<input ng-model="Comment.Text" required />
-			<button ng-click="SubmitComment(Comment)">Submit</button>
-		</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
 		<td>
 			@Html.ActionLink("Download", "Download", new { id = item.ID })
 		</td>
-	</tr>
+    </tr>
 }
 
 </table>
