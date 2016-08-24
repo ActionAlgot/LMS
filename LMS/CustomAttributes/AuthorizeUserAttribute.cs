@@ -8,21 +8,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.UI;
 
 namespace LMS.CustomAttributes
 {
     /*
      * usage:
      * 
-     * [Student(attendsKlass = true)] Nuvarande User måste vara med i klassen
-     * [Student(attendsKlass = false)] Nuvarande User får inte vara med i klassen
+     * [Student(AttendsKlass = true, ParamPos = 2)] Nuvarande User måste vara med i klassen
+     * [Student(AttendsKlass = false, ParamPos = 2)] Nuvarande User får inte vara med i klassen
      */
 
     public class StudentAttribute : AuthorizeAttribute
     {
         //custom
         public bool AttendsKlass { get; set; }
-        //public string AccessLevel { get; set; }
+        public int KlassIDParamPos { get; set; }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -32,27 +33,28 @@ namespace LMS.CustomAttributes
                 return false;
             }
 
+            //Splitta URL så vi har varje del i en array - ex: /Klass/Details/3 blir { 'Klass', 'Details', '3' }
+            var requestedAdress = httpContext.Request.RawUrl;
+            char[] charsToTrim = { '/', ' ' };
+            string trimmedAdress = requestedAdress.Trim(charsToTrim);
+            char[] delimiter = { '/' };
+            string[] adressParts = trimmedAdress.Split(delimiter);
+
+            //Positionen för värdet vi ska använda finns i ParamPos från annoteringen
+            if(KlassIDParamPos >= adressParts.Count())
+            {
+                Debug.WriteLine($"Fick ingen giltig parameterposition att jobba med. Parameter {KlassIDParamPos} finns inte.");
+                return false;
+            }
+            string KlassIdFromUrl = adressParts[(int)KlassIDParamPos];
+            Debug.WriteLine($"Parametern vi vill se är {KlassIdFromUrl}");
             //Kontrollera nu om studenten går i den här klassen
             AccessRepository accessRepo = new AccessRepository();
-
-            //TODO: Ska komma från adressfältet eller dylikt
-            //Här försöker jag hämta ett numerisk id från slutet av requestadressen
-            //bara om requestadressen innehåller ordet Klass
-            //Detta är ingen bra lösning känns det som
-            var requestedAdress = httpContext.Request.RawUrl;
-            char[] delimiter = { '/' };
-            string[] parts = requestedAdress.Split(delimiter);
-            string KlassIdFromUrl = "";
-            if (parts.Contains("Klass"))
+            if (accessRepo.IsTeacher(httpContext.User.Identity.GetUserId()))
             {
-                KlassIdFromUrl = parts[parts.Count()-1];
+                Debug.WriteLine("Vi är en lärare");
+                return true;
             }
-
-            Debug.WriteLine("Klass som ska testas: {0}", KlassIdFromUrl);
-
-            //tills det funkar
-            //string KlassIdFromUrl = "2";
-
             int KlassId;
             bool successfullyParsed = int.TryParse(KlassIdFromUrl, out KlassId);
             if (!successfullyParsed)

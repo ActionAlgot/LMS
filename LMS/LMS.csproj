@@ -166,6 +166,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KlassController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\SubmissionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Repositories\KlassRepository.cs" />
+    <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -298,6 +300,7 @@
     <Content Include="Views\Submission\Index.cshtml" />
     <Content Include="Views\Shared\AccessDenied.cshtml" />
     <Content Include="Views\Error\NotYourKlass.cshtml" />
+    <Content Include="Views\Schedule\MySchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
