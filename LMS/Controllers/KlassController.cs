@@ -33,12 +33,12 @@ namespace LMS.Controllers
 			return Json(new { Removed = success }, JsonRequestBehavior.AllowGet);
 		}
 
-		[Authorize(Roles = "Teacher")]
+		[Student(AttendsKlass = true)]
 		public JsonResult GetNonMembers(int Id) {
 			return Json(repo.GetNonMembers(Id).Select(u => new UserViewModel(u)), JsonRequestBehavior.AllowGet);
 		}
 
-		[Authorize(Roles = "Teacher")]
+		[Student(AttendsKlass = true)]
 		public JsonResult GetMembers(int Id) {
 			var klass = repo.GetSpecific(Id);
 			if (klass == null) return null;
