@@ -1,4 +1,5 @@
-﻿using LMS.Models;
+﻿using LMS.CustomAttributes;
+using LMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace LMS.Controllers
 			return View(repo.GetAll());
         }
 
-		public ActionResult Details(int Id) {
+        [Student(AttendsKlass = true)]
+        public ActionResult Details(int Id) {
 			return View(new KlassDetailsViewModel(repo.GetSpecific(Id), repo.GetNonMembers(Id)));
 		}
 
