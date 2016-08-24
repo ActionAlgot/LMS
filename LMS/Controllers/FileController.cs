@@ -20,7 +20,7 @@ namespace LMS.Controllers {
 
 		public ViewResult Index(int KlassID) {
 			ViewBag.KlassName = repo.GetKlassName(KlassID);
-			ViewBag.KlassID = KlassID;			
+			ViewBag.KlassID = KlassID;
 			return View(repo.GetKlassFiles(KlassID).ToList());
 		}
 		[HttpPost]
@@ -29,6 +29,7 @@ namespace LMS.Controllers {
 			// Verify that the user selected a file
 			if (file != null && file.ContentLength > 0)
 			{
+				if (file.ContentLength > 10000000) { return View("Error"); };
 				// Get file info
 				var fileName = Path.GetFileName(file.FileName);
 				var contentLength = file.ContentLength;
@@ -41,15 +42,15 @@ namespace LMS.Controllers {
 					data = binaryReader.ReadBytes(file.ContentLength);
 				}
 
-				T dgf = (T)Activator.CreateInstance(typeof(T), new object[] { });// {FileName = "aaaa" , ContentType = MimeMapping.GetMimeMapping("shit6.txt"), Content = System.Text.Encoding.Unicode.GetBytes("the sixth brown fuck you"), Uploader;
-				dgf.FileName = fileName;
-				dgf.ContentType = contentType;
-				dgf.UploaderID = User.Identity.GetUserId();
-				dgf.KlassID = Int32.Parse(KlassID);
-				dgf.Content = data;
+				T newFile = (T)Activator.CreateInstance(typeof(T), new object[] { });
+				newFile.FileName = fileName;
+				newFile.ContentType = contentType;
+				newFile.UploaderID = User.Identity.GetUserId();
+				newFile.KlassID = Int32.Parse(KlassID);
+				newFile.Content = data;
 
 				// Show success ...
-				repo.Add(dgf);
+				repo.Add(newFile);
 				return RedirectToAction("Index", new { KlassID = KlassID });
 			}
 			else
