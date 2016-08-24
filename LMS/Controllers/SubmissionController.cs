@@ -9,6 +9,11 @@ namespace LMS.Controllers
 {
 	[Authorize(Roles="Teacher")]
     public class SubmissionController : FileController<SubmissionFile>{
-        
+
+		public ActionResult Create()
+		{
+			return View();
+		}
+
     }
 }

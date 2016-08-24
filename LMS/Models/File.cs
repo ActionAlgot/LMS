@@ -7,6 +7,7 @@ using System.Web;
 
 namespace LMS.Models {
 	public abstract class File {
+		public File() { }
 		[Key]
 		public int ID { get; set; }
 

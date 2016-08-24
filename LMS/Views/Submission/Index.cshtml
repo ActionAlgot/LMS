@@ -52,3 +52,12 @@
 }
 
 </table>
+
+<form action="Submission/GetDocument" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="KlassID" value="@ViewBag.KlassID">
+	<input type="file" name="file" />
+	<input type="submit" value="GetDocument" />
+</form>
+<input type="submit" value="Download" class="btn btn-default" />
+
+
