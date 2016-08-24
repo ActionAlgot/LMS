@@ -18,6 +18,7 @@ namespace LMS.Models {
 	}
 
 	public class UserSchedule : Schedule {
+		public UserSchedule() { }
 		public UserSchedule(Schedule l1, Schedule l2) {
 			Lectures = (ICollection<Lecture>)l1.Lectures.Concat(l2.Lectures);
 		}
