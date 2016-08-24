@@ -49,6 +49,8 @@ namespace LMS.Models
 		public DbSet<SharedFile> SharedFiles { get; set; }
 		public DbSet<SubmissionFile> SubmissionFiles { get; set; }
 		public DbSet<Comment> Comments { get; set; }
+		public DbSet<KlassSchedule> Schedules { get; set; }
+		public DbSet<Lecture> Lectures { get; set; }
 
         public static ApplicationDbContext Create() {
             return new ApplicationDbContext();
