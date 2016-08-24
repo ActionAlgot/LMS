@@ -22,7 +22,7 @@ namespace LMS.Controllers
 			return View(repo.GetAll());
         }
 
-        [Student(AttendsKlass = true)]
+        [Student(AttendsKlass = true, KlassIDParamPos = 2)] 
         public ActionResult Details(int Id) {
 			return View(new KlassDetailsViewModel(repo.GetSpecific(Id), repo.GetNonMembers(Id)));
 		}
