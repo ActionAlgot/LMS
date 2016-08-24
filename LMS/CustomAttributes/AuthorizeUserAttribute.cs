@@ -43,11 +43,11 @@ namespace LMS.CustomAttributes
             //Positionen för värdet vi ska använda finns i ParamPos från annoteringen
             if(KlassIDParamPos >= adressParts.Count())
             {
-                Debug.WriteLine($"Fick ingen giltig parameterposition att jobba med. Parameter {KlassIDParamPos} finns inte.");
+                Debug.WriteLine("Fick ingen giltig parameterposition att jobba med. Parameter {0} finns inte.", KlassIDParamPos);
                 return false;
             }
             string KlassIdFromUrl = adressParts[(int)KlassIDParamPos];
-            Debug.WriteLine($"Parametern vi vill se är {KlassIdFromUrl}");
+            Debug.WriteLine("Parametern vi vill se är {0}", KlassIdFromUrl);
             //Kontrollera nu om studenten går i den här klassen
             AccessRepository accessRepo = new AccessRepository();
             if (accessRepo.IsTeacher(httpContext.User.Identity.GetUserId()))
