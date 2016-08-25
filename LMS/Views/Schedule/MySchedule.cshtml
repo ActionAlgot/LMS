@@ -1,51 +1,9 @@
 ﻿@model LMS.Models.UserSchedule
+@using System.Linq;
 
 @{
     ViewBag.Title = "MySchedule";
 }
 
 <h2>My Schedule</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Lectures.First().Schedule.Klass.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lectures.First().Start)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lectures.First().End)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lectures.First().Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lectures.First().Location)
-        </th>
-    </tr>
-
-@foreach (var item in Model.Lectures) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Schedule.Klass.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.End)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-    </tr>
-}
-
-</table>
+@Html.Partial("SchedulePartial")

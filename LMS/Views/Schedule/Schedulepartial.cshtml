@@ -1,0 +1,29 @@
+﻿@model LMS.Models.Schedule
+
+<div class="schema">
+
+	<!--Earliest start of a day in whole hours-->
+	@{ var startTimeOffset = Model.Lectures.Aggregate((l1, l2) => l1.Start.Hour < l2.Start.Hour ? l1 : l2).Start.Hour * 60; }
+
+	@{ var days = Model.Lectures.GroupBy(l => l.Start.Day).OrderBy(g => g.Key); }
+
+	@foreach (var day in days) {
+		<div class="day">
+
+			<h2>@day.First().Start.DayOfWeek</h2>
+
+			@foreach (var lecture in day) {
+
+				int lectureStartMin = (int)(lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset);
+				int lectureTimeMin = (int)(lecture.End - lecture.Start).TotalMinutes;
+
+				<div class="lecture schema_blue" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;">
+					@lecture.Start.ToString("HH:mm")
+					<br/>
+					@lecture.Name
+				</div>
+			}
+		</div>
+	}
+</div>
+<div style="clear: both;" />
