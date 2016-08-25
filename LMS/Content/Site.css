@@ -22,3 +22,79 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* css for schema */
+.schema {
+    float: left;
+    background-color: #ccc;
+    border: 2px solid grey;
+    height: 632px; /* 600 minuter (10 tim) + 8px margins och borders + 24px dagnamn */
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.8em;
+ }
+.day {
+    padding: 2px;
+    margin: 2px;
+    position: relative;
+    width: 150px;
+    height: 606px; /* 600 minuter (10 tim) + 6px margins */
+    float: left;
+    /*border: 1px solid grey;*/
+    background-color: #ddd;
+    margin-top: 20px;
+}
+.day h2 { position: absolute; top: -34px; font-size: 1.3em;}
+.lecture {
+    width: 144px;
+    margin-top: 2px;
+    padding: 3px;
+    overflow: hidden;
+    color: #222;
+    background-color: white;
+    box-shadow: inset 0px 0px 40px rgba(0,0,0,0.1);
+    position: absolute;
+}
+.schema_blue { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d8f2fa+0,b9dcf4+100 */
+    background: #d8f2fa; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #d8f2fa 0%, #b9dcf4 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #d8f2fa 0%,#b9dcf4 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #d8f2fa 0%,#b9dcf4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8f2fa', endColorstr='#b9dcf4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.schema_green {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d0feca+0,b1e8ae+100 */
+background: #d0feca; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #d0feca 0%, #b1e8ae 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #d0feca 0%,#b1e8ae 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #d0feca 0%,#b1e8ae 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0feca', endColorstr='#b1e8ae',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+.schema_pink {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5d1f5+0,ebaeeb+100 */
+background: #f5d1f5; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #f5d1f5 0%, #ebaeeb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #f5d1f5 0%,#ebaeeb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #f5d1f5 0%,#ebaeeb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5d1f5', endColorstr='#ebaeeb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+.schema_purple {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dcd8fe+0,c6b8fe+100 */
+background: #dcd8fe; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #dcd8fe 0%, #c6b8fe 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #dcd8fe 0%,#c6b8fe 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #dcd8fe 0%,#c6b8fe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dcd8fe', endColorstr='#c6b8fe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+.schema_yellow {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fdfdca+0,fcf9a1+100 */
+background: #fdfdca; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #fdfdca 0%, #fcf9a1 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #fdfdca 0%,#fcf9a1 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #fdfdca 0%,#fcf9a1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdca', endColorstr='#fcf9a1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
