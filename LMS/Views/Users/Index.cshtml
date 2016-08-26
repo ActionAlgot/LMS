@@ -7,7 +7,7 @@
 <h2>Manage Users</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New User", "Create", new object {}, new { @class = "btn btn-success"} )
 </p>
 @{
 	var delete = Url.Action("Delete", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri });
