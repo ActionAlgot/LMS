@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 
 namespace LMS.Controllers {
+	[Authorize]
     public class ScheduleController : Controller {
 		private ScheduleRepository repo = new ScheduleRepository();
 
