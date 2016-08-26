@@ -98,3 +98,6 @@ background: linear-gradient(135deg,  #fdfdca 0%,#fcf9a1 100%); /* W3C, IE10+, FF
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdca', endColorstr='#fcf9a1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 }
+
+.schema a { text-decoration: underline; color: black; }
+.schema a:hover { text-decoration: none; color: black; }
