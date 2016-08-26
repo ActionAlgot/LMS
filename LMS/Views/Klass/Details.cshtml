@@ -5,10 +5,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Class/Course Manager</h2>
 
 <div ng-app="KlassApp" ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
-	<h4>Klass</h4>
+	<h4>@Model.Klass.Name</h4>
 	<hr />
 	@Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new {})
 	@{

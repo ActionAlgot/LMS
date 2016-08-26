@@ -151,7 +151,7 @@ namespace LMS.Repositories
             applicationUser.LastName = user.LastName;
             applicationUser.Email = user.Email;
             applicationUser.PhoneNumber = user.PhoneNumber;
-            applicationUser.UserName = user.UserName;
+            applicationUser.UserName = user.Email;
             UserManager.Update(applicationUser);
         }
     }
