@@ -130,20 +130,7 @@ namespace LMS.Controllers
 			{
 				var repo = new UserRepository();
 				repo.Update(user);
-				//return RedirectToAction("Index");
-				//Response.Cookies.Get("UserEditLocation") == "Klass"
-				//var value=Request.Cookies["key"].Value
-				var value = Request.Cookies["UserEditLocation"].Value;
-
 				return Redirect(returnUrl);
-				/*if (value == "Klass")
-				{
-					return RedirectToRoute(new { controller = "Klass", action = "Index" });
-				}
-				else
-				{
-					return RedirectToRoute(new { controller = "Users", action = "Index" });
-				} */
 			}
 			return View(user);
 		}

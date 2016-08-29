@@ -61,7 +61,7 @@ namespace LMS.CustomAttributes
             else
             {
                 //ex: SharedFiles?KlassID={id} 
-                throw new NotImplementedException();
+                strKlassId = httpContext.Request.QueryString[ParamFrom];
             }
 
             //Förvandla KlassId till en int

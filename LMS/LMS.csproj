@@ -305,6 +305,7 @@
     <Content Include="Views\Error\FileSizeToBig.cshtml" />
     <Content Include="Views\Submission\Submit.cshtml" />
     <Content Include="Views\SharedFiles\SelectFilePatial.cshtml" />
+    <Content Include="Views\Schedule\Schedulepartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

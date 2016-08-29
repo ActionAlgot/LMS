@@ -4,26 +4,20 @@
         <th>
             Name
         </th>
-        <th />
         <th>
-            Email
+            E-mail
         </th>
         <th>
-            Phonenumber
+            Telephone
         </th>
-        <th>
-            Username
-        </th>
-        <th/>
+        
+        <th align="right"/>
 		<th ng-repeat="shit in TableAppends" />
     </tr>
 
     <tr ng-repeat="user in UserList.data">
         <td>
-            {{user.FirstName}}
-        </td>
-        <td>
-            {{user.LastName}}
+           {{user.LastName}}, {{user.FirstName}}
         </td>
         <td>
             {{user.Email}}
@@ -31,19 +25,16 @@
         <td>
             {{user.PhoneNumber}}
         </td>
-        <td>
-            {{user.UserName}}
-        </td>
-        <td>
+        <td align="right">
 			@{
-				var details = Url.Action("Details", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri });
-				details = HttpUtility.UrlDecode(details);
-				var edit = Url.Action("Edit", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri  });
-				edit = HttpUtility.UrlDecode(edit);
+                var details = Url.Action("Details", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri });
+                details = HttpUtility.UrlDecode(details);
+                var edit = Url.Action("Edit", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri  });
+                edit = HttpUtility.UrlDecode(edit);
 			}
 
-			<a data-ng-href="@details">Details</a> |
-			<a data-ng-href="@edit">Edit</a> |
+			<a class="btn btn-primary" data-ng-href="@details">Details</a> &nbsp;
+			<a class="btn btn-success" data-ng-href="@edit">Edit</a> &nbsp;
 			<span ng-repeat="shit in TableAppends" bind-compiled-html="shit"/>
         </td>
 		<td />

@@ -1,0 +1,45 @@
+﻿@model LMS.Models.Schedule
+
+<div class="schema">
+	@{
+		//Earliest start of a day in whole hours
+		var startTimeOffset = Model.Lectures.Aggregate((l1, l2) => l1.Start.Hour < l2.Start.Hour ? l1 : l2).Start.Hour * 60;
+		//day -> lecture -> overlapping lectures
+		var days = Model.Lectures
+			.GroupBy(l => l.Start.Day)
+			.OrderBy(g => g.Key)
+			.Select(day => day
+				.Select(l1 => new {
+					lecture = l1,
+					overlaps = day.Where(
+						l2 => l1.Start < l2.End
+						&& l2.Start < l1.End
+						&& l1 != l2),
+					pushRight = new bool[] { false }
+				}).ToList());
+	}
+	@foreach (var day in days) {
+		<div class="day">
+
+			<h2>@day.First().lecture.Start.DayOfWeek</h2>
+
+			@foreach (var _lecture in day) {
+				double heightStretch = 1.2;
+				int lectureStartMin = (int)((_lecture.lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch);
+				int lectureTimeMin = (int)((_lecture.lecture.End - _lecture.lecture.Start).TotalMinutes *heightStretch);
+				string widthStyling = "";
+				if (_lecture.overlaps.Count() != 0) {
+					if (_lecture.pushRight[0]) { widthStyling += " left: 65px;"; }
+					else { foreach (var l in _lecture.overlaps) { day.SingleOrDefault(_l => _l.lecture == l).pushRight[0] = true; }}
+					widthStyling += " width: 50%";
+				}
+
+				<div class="lecture schema_blue" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
+					@_lecture.lecture.Start.ToString("HH:mm")<br/>
+					@_lecture.lecture.Name
+				</div>
+			}
+		</div>
+	}
+</div>
+<div style="clear: both;" />

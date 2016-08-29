@@ -4,16 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Manage Students</h2>
+<h2>Manage Users</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New User", "Create", new object {}, new { @class = "btn btn-success"} )
 </p>
 @{
 	var delete = Url.Action("Delete", "Users", new { id = "{{user.Id}}", ReturnUrl = Request.Url.AbsoluteUri });
 	delete = HttpUtility.UrlDecode(delete);
 }
-<div ng-app="FuckItApp" ng-controller="BasicShitController" ng-init="GetData('GetAll'); TableAppendages.push('&lt;td&gt;&lt;a data-ng-href=&quot;@delete&quot;&gt;Delete&lt;a&gt;&lt;td&gt;')">
+<div ng-app="FuckItApp" ng-controller="BasicShitController" ng-init="GetData('GetAll'); TableAppendages.push('&lt;td&gt;&lt;a class=&quot;btn btn-danger&quot; data-ng-href=&quot;@delete&quot;&gt;Delete&lt;a&gt;&lt;td&gt;')">
 	<div ng-controller="UserListController" ng-init="tag='Whatever'; GetShit()">
 		@Html.Partial("UserListPartial")
 	</div>
