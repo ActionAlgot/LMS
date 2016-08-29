@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<LMS.Models.SharedFile>
 
+
 <h2>Klass @ViewBag.KlassName shared files</h2>
 
 <table class="table">
@@ -16,27 +17,12 @@
         <th />
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Uploader.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContentType)
-        </td>
-        <td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-		<td>
-			@Html.ActionLink("Download", "Download", new { id = item.ID })
-		</td>
-    </tr>
-}
+	@Html.Partial("SelectFilepartial")
 
 </table>
+
+<form action="SharedFiles/GetDocument" method="post" enctype="multipart/form-data">
+<input type="hidden" name="KlassID" value="@ViewBag.KlassID">
+<input type="file" name="file" />
+<input type="submit" value="Share File" />
+</form>

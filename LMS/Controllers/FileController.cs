@@ -24,12 +24,12 @@ namespace LMS.Controllers {
 			return View(repo.GetKlassFiles(KlassID).ToList());
 		}
 		[HttpPost]
-		public ActionResult GetDocument(HttpPostedFileBase file, string KlassID)
+		public ActionResult GetDocument(HttpPostedFileBase file, string SelectedKlassId)
 		{
 			// Verify that the user selected a file
 			if (file != null && file.ContentLength > 0)
 			{
-				if (file.ContentLength > 10000000) { return View("Error"); };
+				if (file.ContentLength > 10000000) { return RedirectToAction("FileSizeToBig", "Error"); };
 				// Get file info
 				var fileName = Path.GetFileName(file.FileName);
 				var contentLength = file.ContentLength;
@@ -46,12 +46,12 @@ namespace LMS.Controllers {
 				newFile.FileName = fileName;
 				newFile.ContentType = contentType;
 				newFile.UploaderID = User.Identity.GetUserId();
-				newFile.KlassID = Int32.Parse(KlassID);
+				newFile.KlassID = Int32.Parse(SelectedKlassId);
 				newFile.Content = data;
 
 				// Show success ...
 				repo.Add(newFile);
-				return RedirectToAction("Index", new { KlassID = KlassID });
+				return RedirectToAction("Index", new { KlassID = SelectedKlassId });
 			}
 			else
 			{

@@ -1,0 +1,14 @@
+﻿@model LMS.Models.UploadFileViewModel
+@{
+    ViewBag.Title = "Submit";
+}
+
+<h2>Submit</h2>
+			
+<form action="GetDocument" method="post" enctype="multipart/form-data">
+	@*@Html.LabelFor(m => m.SelectedKlassId)*@
+	@Html.DropDownListFor(m => Model.SelectedKlassId, Model.KlassList)
+	@*@Html.ValidationMessageFor(m => m.SelectedKlassId)*@
+	<input type="file" name="file" />
+	<input type="submit" value="Submit File" />
+</form>

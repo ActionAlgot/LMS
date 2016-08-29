@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LMS.Models {
 	public class Klass {
@@ -17,5 +18,7 @@ namespace LMS.Models {
 		public ICollection<SubmissionFile> Submission { get; set; }
 		
 		public virtual ICollection<ApplicationUser> Members { get; set; }
+
 	}
+
 }

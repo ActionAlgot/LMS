@@ -17,5 +17,10 @@ namespace LMS.Controllers
         {
             return View("NotYourKlass");
         }
+
+		public ActionResult FileSizeToBig()
+		{
+			return View("FileSizeToBig");
+		}
     }
 }
