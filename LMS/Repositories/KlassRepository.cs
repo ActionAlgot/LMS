@@ -12,7 +12,14 @@ namespace LMS.Repositories {
 			return ctx.Klasses;
 		}
 
-		public Klass GetSpecific(int Id) {
+        /* Returnera de klasser nuvarande användare är med i */
+        public IEnumerable<Klass> GetMyClasses(string userId)
+        {
+            ApplicationUser appUser = ctx.Users.SingleOrDefault(u => u.Id == userId);
+            return appUser.Klasses;
+        }
+
+        public Klass GetSpecific(int Id) {
 			return ctx.Klasses.SingleOrDefault(k => k.ID == Id);
 		}
 
