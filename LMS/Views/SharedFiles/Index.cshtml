@@ -16,13 +16,4 @@
         </th>
         <th />
     </tr>
-
-	@Html.Partial("SelectFilepartial")
-
 </table>
-
-<form action="SharedFiles/GetDocument" method="post" enctype="multipart/form-data">
-<input type="hidden" name="KlassID" value="@ViewBag.KlassID">
-<input type="file" name="file" />
-<input type="submit" value="Share File" />
-</form>

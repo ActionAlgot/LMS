@@ -34,14 +34,7 @@ namespace LMS.Controllers
             return View("Submit", model);
 		}
 
-		public ActionResult Share()
-		{
-			var repo = new KlassRepository();
-			var klasses = repo.GetAll().Select(k => new SelectListItem { Value = k.ID.ToString(), Text = k.Name });
-			var model = new UploadFileViewModel();
-			model.KlassList = klasses;
-			return View("Upload", model);
-		}
+		
 
 		//private IEnumerable<SelectListItem> GetKlassesForDropdown<Tkey, Tvalue>(IEnumerable<Tkey, Tvalue> elements)
 		//{
