@@ -3,12 +3,23 @@
     ViewBag.Title = "Submit";
 }
 
-<h2>Submit</h2>
-			
+<h2>Submit an Assignment</h2>
+<h4>Submit a completed assignment for feedback.</h4>			
+
 <form action="GetDocument" method="post" enctype="multipart/form-data">
-	@*@Html.LabelFor(m => m.SelectedKlassId)*@
-	@Html.DropDownListFor(m => Model.SelectedKlassId, Model.KlassList)
-	@*@Html.ValidationMessageFor(m => m.SelectedKlassId)*@
-	<input type="file" name="file" />
-	<input type="submit" value="Submit File" />
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Choose class/course for assignment</label><br />
+        @Html.DropDownListFor(m => Model.SelectedKlassId, Model.KlassList)
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputFile">Choose file to submit</label>
+        <input type="file" name="file" />
+        <p class="help-block">Use a zip archive to submit several files.</p>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit File</button>
+    </div>
 </form>
