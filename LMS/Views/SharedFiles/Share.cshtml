@@ -1,0 +1,25 @@
+﻿@model LMS.Models.UploadFileViewModel
+@{
+	ViewBag.Title = "Share";
+}
+
+<h2>Share a file with your class</h2>
+<h4>Share a file that only members of your class can see</h4>
+
+<form action="GetDocument" method="post" enctype="multipart/form-data">
+
+	<div class="form-group">
+		<label for="exampleInputEmail1">Choose class/course to share with</label><br />
+		@Html.DropDownListFor(m => Model.SelectedKlassId, Model.KlassList)
+	</div>
+
+	<div class="form-group">
+		<label for="exampleInputFile">Choose file to share</label>
+		<input type="file" name="file" />
+		<p class="help-block">Use a zip archive to share several files.</p>
+	</div>
+
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary">Share File</button>
+	</div>
+</form>

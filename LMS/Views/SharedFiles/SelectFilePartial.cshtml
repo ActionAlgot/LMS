@@ -1,0 +1,11 @@
+﻿@*@model IEnumerable<LMS.Models.SharedFile>*@
+@*@model IEnumerable<LMS.Models.UploadFileViewModel>*@
+
+<td>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+	@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+	@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+</td>
+<td>
+	@Html.ActionLink("Download", "Download", new { id = item.ID })
+</td>
