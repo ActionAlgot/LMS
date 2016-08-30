@@ -16,4 +16,26 @@
         </th>
         <th />
     </tr>
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Uploader.UserName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FileName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ContentType)
+			</td>
+			<td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+				@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+				@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+			</td>
+			<td>
+				@Html.ActionLink("Download", "Download", new { id = item.ID })
+			</td>
+		</tr>
+	}
 </table>
