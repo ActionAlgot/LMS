@@ -19,19 +19,32 @@
 			<h2>@day.First().Start.DayOfWeek</h2>
 
 			@foreach (var _lecture in day) {
-				double heightStretch = 1.2;
-				int lectureStartMin = (int)((_lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch);
-				int lectureTimeMin = (int)((_lecture.End - _lecture.Start).TotalMinutes * heightStretch);
-				
-				string widthStyling = "";	//place up to a few overlapping lectures next side by side
-				if (_lecture is Lecture && ((Lecture)_lecture).GetOverlapping(Model).Any()) {
-					var lec = (Lecture)_lecture;
-					if (dic.ContainsKey(lec)) { widthStyling += " left: 65px;"; }
-					else { foreach (Lecture l in lec.GetOverlapping(Model)) { if (!dic.ContainsKey(l)) { dic.Add(l, true); } } }
-					widthStyling += " width: 50%";
-				}
+                double heightStretch = 1.2;
+                int lectureStartMin = (int)((_lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch);
+                int lectureTimeMin = (int)((_lecture.End - _lecture.Start).TotalMinutes * heightStretch);
+                string widthStyling = "";   //place up to a few overlapping lectures next side by side
+                if (_lecture is Lecture && ((Lecture)_lecture).GetOverlapping(Model).Any())
+                {
+                    var OverLapCount = ((Lecture)_lecture).GetOverlapping(Model).Count();
+                    var lec = (Lecture)_lecture;
+                    if (dic.ContainsKey(lec))
+                    {
+                        widthStyling += " left: 50%;";
+                    }
+                    else
+                    {
+                        foreach (Lecture l in lec.GetOverlapping(Model))
+                        {
+                            if (!dic.ContainsKey(l))
+                            {
+                                dic.Add(l, true);
+                            }
+                        }
+                    }
+                    widthStyling += " width: 50%;";
+                }
 
-				<div class="lecture schema_blue" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
+				<div class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
 					@_lecture.Start.ToString("HH:mm")<br/>
 					@_lecture.Name
 				</div>
