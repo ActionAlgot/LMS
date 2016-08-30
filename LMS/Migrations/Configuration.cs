@@ -111,16 +111,18 @@ using System.Linq;
 					new Lecture{ID = 2, Start = new DateTime(2016, 8, 25, 12, 30, 0), End = new DateTime(2016, 8, 25, 13, 45, 0), Location = "hell"},
 					new Lecture{ID = 3, Start = new DateTime(2016, 8, 25, 13, 50, 0), End = new DateTime(2016, 8, 25, 14, 0, 0), Location = "hell"},
 					new Lecture{ID = 4, Start = new DateTime(2016, 8, 25, 14, 5, 0), End = new DateTime(2016, 8, 25, 15, 30, 0), Location = "hell"},
+					new Lecture{ID = 33, Start = new DateTime(2016, 8, 25, 14, 50, 0), End = new DateTime(2016, 8, 25, 15, 40, 0), Location = "hell"},
+					new Lecture{ID = 34, Start = new DateTime(2016, 8, 25, 14, 5, 0), End = new DateTime(2016, 8, 25, 15, 30, 0), Location = "hell"},
 					new Lecture{ID = 5, Start = new DateTime(2016, 8, 25, 15, 30, 0), End = new DateTime(2016, 8, 25, 16, 0, 0), Location = "hell 2.0"},
 					new Lecture{ID = 6, Start = new DateTime(2016, 8, 26, 10, 15, 0), End = new DateTime(2016, 8, 26, 11, 30, 0), Location = "hell"},
 					new Lecture{ID = 7, Start = new DateTime(2016, 8, 26, 12, 30, 0), End = new DateTime(2016, 8, 26, 13, 45, 0), Location = "hell"},
 					new Lecture{ID = 8, Start = new DateTime(2016, 8, 26, 13, 50, 0), End = new DateTime(2016, 8, 26, 14, 0, 0), Location = "hell"},
 					new Lecture{ID = 9, Start = new DateTime(2016, 8, 26, 14, 5, 0), End = new DateTime(2016, 8, 26, 15, 30, 0), Location = "hell"},
-					new Lecture{ID = 10, Start = new DateTime(2016, 8, 26, 15, 30, 0), End = new DateTime(2016, 8, 26, 16, 0, 0), Location = "hell 2.0"}
+					new Lecture{ID = 10, Start = new DateTime(2016, 8, 26, 15, 30, 0), End = new DateTime(2016, 8, 26, 16, 0, 0), Location = "hell 2.0"},
+					new Lecture{ID = 31, Start = new DateTime(2016, 8, 26, 10, 10, 0), End = new DateTime(2016, 8, 26, 16, 0, 0), Location = "hell 2.0"}
 				}},
 				new KlassSchedule{ Lectures = new List<Lecture>(){
 					new Lecture{ID = 11, Start = new DateTime(2016, 8, 29, 10, 15, 0), End = new DateTime(2016, 8, 29, 11, 30, 0), Location = "hell"},
-					new Lecture{ID = 12, Start = new DateTime(2016, 8, 29, 12, 30, 0), End = new DateTime(2016, 8, 29, 13, 45, 0), Location = "hell"},
 					new Lecture{ID = 13, Start = new DateTime(2016, 8, 29, 13, 50, 0), End = new DateTime(2016, 8, 29, 14, 0, 0), Location = "hell"},
 					new Lecture{ID = 14, Start = new DateTime(2016, 8, 29, 14, 5, 0), End = new DateTime(2016, 8, 29, 15, 30, 0), Location = "hell"},
 					new Lecture{ID = 15, Start = new DateTime(2016, 8, 29, 15, 30, 0), End = new DateTime(2016, 8, 29, 16, 0, 0), Location = "hell 2.0"},
@@ -128,10 +130,11 @@ using System.Linq;
 					new Lecture{ID = 17, Start = new DateTime(2016, 8, 30, 12, 30, 0), End = new DateTime(2016, 8, 30, 13, 45, 0), Location = "hell"},
 					new Lecture{ID = 18, Start = new DateTime(2016, 8, 30, 13, 50, 0), End = new DateTime(2016, 8, 30, 14, 0, 0), Location = "hell"},
 					new Lecture{ID = 19, Start = new DateTime(2016, 8, 30, 14, 5, 0), End = new DateTime(2016, 8, 30, 15, 30, 0), Location = "hell"},
+					new Lecture{ID = 32, Start = new DateTime(2016, 8, 30, 14, 5, 0), End = new DateTime(2016, 8, 30, 15, 30, 0), Location = "hell"},
 					new Lecture{ID = 20, Start = new DateTime(2016, 8, 30, 15, 30, 0), End = new DateTime(2016, 8, 30, 16, 0, 0), Location = "hell 2.0"}
 				}},
 				new KlassSchedule{ Lectures = new List<Lecture>(){
-					new Lecture{ID = 21, Start = new DateTime(2016, 8, 29, 10, 15, 0), End = new DateTime(2016, 8, 29, 11, 30, 0), Location = "hell"},
+					new Lecture{ID = 21, Start = new DateTime(2016, 8, 29, 10, 0, 0), End = new DateTime(2016, 8, 29, 13, 30, 0), Location = "hell"},
 					new Lecture{ID = 22, Start = new DateTime(2016, 8, 29, 12, 30, 0), End = new DateTime(2016, 8, 29, 13, 45, 0), Location = "hell"},
 					new Lecture{ID = 23, Start = new DateTime(2016, 8, 29, 13, 50, 0), End = new DateTime(2016, 8, 29, 14, 0, 0), Location = "hell"},
 					new Lecture{ID = 24, Start = new DateTime(2016, 8, 29, 14, 5, 0), End = new DateTime(2016, 8, 29, 15, 30, 0), Location = "hell"},
