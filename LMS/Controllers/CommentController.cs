@@ -8,11 +8,12 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 
 namespace LMS.Controllers {
-	[Authorize(Roles="Teacher")]
+	
     public class CommentController : Controller {
 		private CommentRepository repo = new CommentRepository();
 
 		[HttpPost]
+		[Authorize(Roles="Teacher")]
 		public JsonResult Create(Comment comment) {
 			if (ModelState.IsValid) {
 				comment.Date = DateTime.Now;
@@ -22,5 +23,14 @@ namespace LMS.Controllers {
 			}
 			return Json(new { }, JsonRequestBehavior.AllowGet);
 		}
+
+
+		public ActionResult FeedBack()
+		{
+			var feedback = repo.getFeedback(User.Identity.GetUserId());
+			return View(feedback);
+		}
     }
+
+
 }
