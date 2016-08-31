@@ -17,6 +17,12 @@ namespace LMS.Repositories {
 			}
 		}
 
+		/*public IEnumerable<T> GetMySubmittedFiles(string userId)
+		{
+			//ctx.Klasses.SingleOrDefault(k => k.ID == KlassID) //proper check if the klass exists
+			return Files.Where(f => f.UploaderID == userId);
+		} */
+
 		public T GetSpecific(int ID) {
 			return Files.FirstOrDefault(f => f.ID == ID);
 		}
@@ -39,6 +45,7 @@ namespace LMS.Repositories {
 			Files.Remove(file);
 			ctx.SaveChanges();
 		}
+		
 
 	}
 }
