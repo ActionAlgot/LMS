@@ -30,7 +30,13 @@ namespace LMS.Controllers
 
             //var repo = new AccessRepository();
             //model.KlassList = repo.GetKlassesForUser(User.Identity.GetUserId());
-
+			//var klassRepo = new KlassRepository();
+			//var klasses = klassRepo.GetMyClasses(User.Identity.GetUserId())/*.Select(k => new SelectListItem { Value = k.ID.ToString(), Text = k.Name });*/	;
+			//var model = new UploadFileViewModel();
+			//model.KlassList = klasses.Select(k => new SelectListItem { Value = k.ID.ToString(), Text = k.Name });
+			//model.Files = klasses.SelectMany(k => k.Shared).ToList();
+			//var repo = new AccessRepository();
+			//model.KlassList = repo.GetKlassesForUser(User.Identity.GetUserId());
             return View("Submit", model);
 		}
 

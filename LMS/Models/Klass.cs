@@ -14,8 +14,8 @@ namespace LMS.Models {
 		public string Name { get; set; }
 
 		public virtual KlassSchedule Schedule { get; set; }
-		public ICollection<SharedFile> Shared { get; set; }
-		public ICollection<SubmissionFile> Submission { get; set; }
+		public virtual ICollection<SharedFile> Shared { get; set; }
+		public virtual ICollection<SubmissionFile> Submission { get; set; }
 		
 		public virtual ICollection<ApplicationUser> Members { get; set; }
 

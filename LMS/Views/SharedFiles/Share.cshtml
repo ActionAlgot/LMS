@@ -3,6 +3,27 @@
 	ViewBag.Title = "Share";
 }
 
+
+<table>
+	<tr>
+		<th>Filename</th><th>Class</th><th>Uploader</th><th>Download</th>
+	</tr>
+	
+	@foreach (var file in Model.Files) {
+		<tr>
+			<td>@file.FileName</td>
+			<td>@file.Klass.Name</td>
+			<td>@file.Uploader.GetFullName()</td>
+			<td>@Html.ActionLink("Download", "Download", new { id = file.ID })</td>
+		</tr>
+	}
+	</table>
+
+
+
+
+
+
 <h2>Share a file with your class</h2>
 <h4>Share a file that only members of your class can see</h4>
 
