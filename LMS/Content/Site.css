@@ -51,6 +51,7 @@ hr { color: black; border-color: #444; }
 .day h2 { position: absolute; top: -38px; font-size: 1.3em; font-weight: 600;}
 
 .lecture {
+    cursor: pointer;
     box-sizing: border-box;
     width: 100%;
     font-weight: bold;
@@ -62,6 +63,21 @@ hr { color: black; border-color: #444; }
     background-color:rgba(128,128,128,0.5);
     box-shadow: inset 0px 0px 40px rgba(0,0,0,0.1);
     position: absolute;
+    word-break: normal;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+}
+div.lecture a { display: block; height: 100%; width: 100%; text-decoration: none; }
+/*div.lecture a:hover { display: block; height: 100%; width: 100%; text-decoration: none; }*/
+.lecture.hoverable:hover { overflow: unset; width: 100% !important; height: auto !important; z-index: 10;
+    box-shadow: 4px 4px 14px rgba(0,0,0,0.5); 
+    background: #d8f2fa; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #d8f2fa 0%, #b9dcf4 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #d8f2fa 0%,#b9dcf4 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #d8f2fa 0%,#b9dcf4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8f2fa', endColorstr='#b9dcf4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */                    
 }
 .schema_blue {
 }
