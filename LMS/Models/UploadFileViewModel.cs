@@ -12,6 +12,8 @@ namespace LMS.Models
 
 		public string ID { get; set; }
 
+		public IEnumerable<SharedFile> Files { get; set; }
+
 		public int SelectedKlassId { get; set; }
 		public IEnumerable<SelectListItem> KlassList { get; set; }
 	}
