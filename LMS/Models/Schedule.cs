@@ -32,14 +32,10 @@ namespace LMS.Models {
 		public IEnumerable<OverlapLecture> GetOverlaps(int minOverlaps){
 			return Lectures
 				.Where(l => l.GetOverlapping(this).Count() >= minOverlaps)
-				.Where(l => l.GetOverlapping(this)
-					.Where(l2 =>	//lectures overlap at least 'minOverlaps' times in a single instant
-						(l2.GetOverlapping(this).Intersect(l.GetOverlapping(this)
-						).Count() >= minOverlaps -1))	//-1 to account for 'l'
-					.Any())
+				.Where(l => l.GetMaxOverlaps(this) >= minOverlaps)
 				.Select(l => {	//'lecture' thats spans over lectures involved in overlap
 					var newL = new OverlapLecture { Start = l.Start, End = l.End };
-					while(newL.GetOverlapping(this).Any()){
+					while(true){
 						var seedL = newL;
 						newL = newL.GetOverlapping(this).Aggregate(
 							newL,
@@ -48,17 +44,15 @@ namespace LMS.Models {
 									Start = fug1.Start < fug2.Start ? fug1.Start : fug2.Start,
 									End = fug1.End > fug2.End ? fug1.End : fug2.End
 								});
-						if (seedL.Start == newL.Start && seedL.End == newL.End) break;
-					}
-					return newL;
-					})
+						if (seedL.Start == newL.Start && seedL.End == newL.End) return newL;
+					}})
 				.Distinct(new FuckOOPEqualityComparer<OverlapLecture>(
 					(a, b) => a.Start == b.Start && a.End == b.End,
 					obj => obj.ToString().GetHashCode()))
 				.OrderBy(l => l.Start)	//sort to ensure weirdness does not happen in logiuc below
 				.Aggregate(new List<OverlapLecture>(),	//combine overlapping overlaps
 					(lList, l) =>{
-						var lel = lList.SingleOrDefault(el => el.Start < l.End && l.Start < el.End);
+						var lel = lList.SingleOrDefault(el => el.Start < l.End && l.Start < el.End);	//check if prev overlaps with current
 						if (lel != null) {
 							lel.Start = lel.Start < l.Start ? lel.Start : l.Start;
 							lel.End = lel.End < l.End ? lel.End : l.End;
