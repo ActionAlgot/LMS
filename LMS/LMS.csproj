@@ -312,6 +312,7 @@
     <Content Include="Views\SharedFiles\Share.cshtml" />
     <Content Include="Views\Comment\Feedback.cshtml" />
     <Content Include="Views\Klass\ShowMyClasses.cshtml" />
+    <Content Include="Views\Schedule\KlassSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

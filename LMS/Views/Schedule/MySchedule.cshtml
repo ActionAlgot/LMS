@@ -10,6 +10,14 @@
 }
 
 <h2>My Schedule</h2>
+
+<div>
+	View specific klass schedule:
+	@foreach (var k in ViewBag.Klasses) {
+		<div>@Html.ActionLink((string)k.Name, "KlassSchedule", new { ID = k.ID }) </div>
+	}
+</div>
+
 @{
 	var dfi = DateTimeFormatInfo.CurrentInfo;
 	var cal = dfi.Calendar;
