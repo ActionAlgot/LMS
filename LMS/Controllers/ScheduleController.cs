@@ -11,7 +11,9 @@ namespace LMS.Controllers {
     public class ScheduleController : Controller {
 		private ScheduleRepository repo = new ScheduleRepository();
 
-        public ActionResult MySchedule() {
+        public ActionResult MySchedule(int? year, int? week) {
+			ViewBag.Year = year;
+			ViewBag.Week = week;
 			return View(repo.GetUserSchedule(User.Identity.GetUserId()));
         }
     }

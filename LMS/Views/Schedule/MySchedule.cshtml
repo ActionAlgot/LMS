@@ -1,6 +1,9 @@
 ﻿@model LMS.Models.UserSchedule
 @using System.Linq;
 @using System.Globalization
+@using LMS.Helpers
+@using System
+@using System.Diagnostics;
 
 @{
     ViewBag.Title = "MySchedule";
@@ -11,5 +14,18 @@
 	var dfi = DateTimeFormatInfo.CurrentInfo;
 	var cal = dfi.Calendar;
 	Func<DateTime, int> getWeekOfYear = d => cal.GetWeekOfYear(d, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+	var year = ViewBag.Year ?? DateTime.Now.Year;
+	var week = ViewBag.Week ?? getWeekOfYear(DateTime.Now);
+	var prevNewYearsEve = new DateTime(year-1, 12, 31);
+	var newYearsEve = new DateTime(year, 12, 31);
+	var yearEndWeek = (int)newYearsEve.DayOfWeek >= 4 || newYearsEve.DayOfWeek == 0 ? getWeekOfYear(newYearsEve) : (getWeekOfYear(newYearsEve) - 1);	@*//fuck stupid ass gregorian anus fondling retarded week bitch shift goddamned piss arse horsecrap asswipe bullshit*@
 }
-@Html.Partial("SchedulePartial", new LMS.Models.ScheduleWeekViewModel { Schedule = Model, Year = DateTime.Now.Year, WeekOfYear = getWeekOfYear(DateTime.Now)})
+@Html.ActionLink("Previous", "MySchedule", new {
+	Year = week > 1 ? year : (year -1),
+	Week = week > 1 ? week - 1 : (int)prevNewYearsEve.DayOfWeek >= 4 || prevNewYearsEve.DayOfWeek == 0 ? getWeekOfYear(prevNewYearsEve) : (getWeekOfYear(prevNewYearsEve) - 1)}) |	@*//fuck stupid ass gregorian anus fondling retarded week bitch shift goddamned piss arse horsecrap asswipe bullshit*@
+<strong>Week @week</strong> | 
+@Html.ActionLink("Next", "MySchedule", new {
+	Year = week < yearEndWeek ? year : (year +1),
+	Week = week < yearEndWeek ? week + 1 : 1})
+
+@Html.Partial("SchedulePartial", new LMS.Models.ScheduleWeekViewModel { Schedule = Model,Year = year, WeekOfYear = week})
