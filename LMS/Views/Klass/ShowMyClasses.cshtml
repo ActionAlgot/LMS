@@ -8,7 +8,7 @@
 
 @foreach (var klass in Model)
 {
-    <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary">Schedule</a></h2>
+    <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary" href="/SharedFiles/Share/@(klass.ID)">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary" href="/Schedule/MySchedule/@(klass.ID)">Schedule</a></h2>
     <table class="table">
         <tr>
             <th>Namn</th><th>Roles</th><th>E-mail</th><th>Telephone</th></tr>
@@ -21,14 +21,7 @@
                     @member.LastName
                 </td>
                     <td>
-                        @if(member.Roles.ToString().Contains("Student"))
-                        {
-                            <span>Student</span>
-                        }
-                        else if (member.Roles.ToString().Contains("Teacher"))
-                        {
-                            <span>Teacher</span>
-                        }
+                        @member.Roles.ToString()
                     </td>
                 <td> 
                     @member.Email</td>
