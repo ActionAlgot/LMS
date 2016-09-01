@@ -6,6 +6,9 @@
 @using System.Diagnostics;
 
 <h2>@Model.Klass.Name Schedule</h2>
+
+@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID}, new {})
+
 @{
 	var dfi = DateTimeFormatInfo.CurrentInfo;
 	var cal = dfi.Calendar;

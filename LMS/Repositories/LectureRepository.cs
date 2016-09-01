@@ -17,5 +17,11 @@ namespace LMS.Repositories {
 			ctx.SaveChanges();
 			return true;
 		}
+
+		public bool Add(Lecture lecture) {
+			ctx.Lectures.Add(lecture);
+			ctx.SaveChanges();
+			return true;
+		}
 	}
 }

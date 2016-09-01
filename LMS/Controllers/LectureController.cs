@@ -25,5 +25,16 @@ namespace LMS.Controllers
 			if (ModelState.IsValid && repo.Update(lecture)) return RedirectToAction("Lecture", new { ID = lecture.ID });
 			return View(lecture);
 		}
+
+		[HttpGet]
+		public ActionResult Create(int sID) {
+			return View(new Lecture { ScheduleID = sID });
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public ActionResult Create(Lecture lecture) {
+			if (ModelState.IsValid && repo.Add(lecture)) return RedirectToAction("Lecture", new { ID = lecture.ID });
+			return View(lecture);
+		}
     }
 }

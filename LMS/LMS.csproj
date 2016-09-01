@@ -320,6 +320,7 @@
     <Content Include="Views\TeacherSubmission\Index.cshtml" />
     <Content Include="Views\TeacherSubmission\Submit.cshtml" />
     <Content Include="Views\Lecture\Edit.cshtml" />
+    <Content Include="Views\Lecture\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
