@@ -1,0 +1,25 @@
+﻿@model LMS.Models.UploadFileViewModel
+@{
+    ViewBag.Title = "Submit";
+}
+
+<h2>Submit an Assignment</h2>
+<h4>Submit a completed assignment for feedback.</h4>			
+
+<form action="GetDocument" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Choose class/course for assignment</label><br />
+        @Html.DropDownListFor(m => Model.SelectedKlassId, Model.KlassList)
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputFile">Choose file to submit</label>
+        <input type="file" name="file" />
+        <p class="help-block">Use a zip archive to submit several files.</p>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit File</button>
+    </div>
+</form>

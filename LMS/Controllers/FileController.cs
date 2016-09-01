@@ -13,8 +13,12 @@ namespace LMS.Controllers {
     public abstract class FileController<T> : Controller where T : LMS.Models.File {
 		protected FileRepository<T> repo = new FileRepository<T>();
 
-		public FileContentResult Download(int ID) {
-			var file = repo.GetSpecific(ID);
+		public virtual dynamic Download(int? ID)
+		{
+			int ID2;
+			if (ID == null) { return View("AccessDenied"); }
+			else ID2 = (int)ID;
+			var file = repo.GetSpecific(ID2);
 			return File(file.Content, file.ContentType, file.FileName);
 		}
 

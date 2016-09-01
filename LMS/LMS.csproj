@@ -168,7 +168,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\StudentSubmissionController.cs" />
     <Compile Include="Controllers\SubmissionController.cs" />
+    <Compile Include="Controllers\TeacherSubmissionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CustomAttributes\AttendsKlassAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -299,19 +301,21 @@
     <Content Include="Views\SharedFiles\Upload.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\SharedFiles\Index.cshtml" />
-    <Content Include="Views\Submission\Index.cshtml" />
+    <Content Include="Views\StudentSubmission\Index.cshtml" />
     <Content Include="Views\Shared\AccessDenied.cshtml" />
     <Content Include="Views\Error\NotYourKlass.cshtml" />
     <Content Include="Views\Schedule\MySchedule.cshtml" />
     <Content Include="Views\Error\FileSizeToBig.cshtml" />
-    <Content Include="Views\Submission\Submit.cshtml" />
-    <Content Include="Views\SharedFiles\SelectFilePartial.cshtml" />
+    <Content Include="Views\StudentSubmission\Submit.cshtml" />
     <Content Include="Views\Schedule\Schedulepartial.cshtml" />
     <Content Include="Views\SharedFiles\Share.cshtml" />
     <Content Include="Views\Comment\Feedback.cshtml" />
+    <Content Include="Views\TeacherSubmission\Index.cshtml" />
+    <Content Include="Views\TeacherSubmission\Submit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Submission\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
