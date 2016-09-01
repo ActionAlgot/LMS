@@ -11,5 +11,11 @@ namespace LMS.Repositories {
 		public Lecture get(int ID) {
 			return ctx.Lectures.FirstOrDefault(l => l.ID == ID);
 		}
+
+		public bool Update(Lecture lecture) {
+			ctx.Lectures.Add(lecture);
+			ctx.SaveChanges();
+			return true;
+		}
 	}
 }
