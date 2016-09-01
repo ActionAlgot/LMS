@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LMS.Models.Klass>
+
+@{
+    ViewBag.Title = "My Classes/Courses";
+}
+
+<h2>My Classes/Courses</h2>
+
+@foreach (var klass in Model)
+{
+    <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary">Schedule</a></h2>
+    <table class="table">
+        <tr>
+            <th>Namn</th><th>Roles</th><th>E-mail</th><th>Telephone</th></tr>
+            @foreach (var member in klass.Members)
+            {
+                <tr>
+                <td>
+                    @member.FirstName
+                    ,
+                    @member.LastName
+                </td>
+                    <td>
+                        @if(member.Roles.ToString().Contains("Student"))
+                        {
+                            <span>Student</span>
+                        }
+                        else if (member.Roles.ToString().Contains("Teacher"))
+                        {
+                            <span>Teacher</span>
+                        }
+                    </td>
+                <td> 
+                    @member.Email</td>
+                <td>
+                    @member.PhoneNumber
+                </td>
+                </tr>
+                    }
+</table>
+
+}
+
