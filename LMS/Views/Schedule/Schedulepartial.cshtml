@@ -51,9 +51,9 @@
 			@{iWeek = iWeek == 6 ? 0 : iWeek + 1;}
 
 			@foreach (var _lecture in day) {
-                double heightStretch = 1.2;
-                int lectureStartMin = (int)((_lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch);
-                int lectureTimeMin = (int)((_lecture.End - _lecture.Start).TotalMinutes * heightStretch);
+                double heightStretch = 1.0;
+                int lectureStartMin = (int)((_lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch) - 2;
+                int lectureTimeMin = (int)((_lecture.End - _lecture.Start).TotalMinutes * heightStretch) + 1;
                 string widthStyling = "";   //place up to a few overlapping lectures next side by side
                 if (_lecture is Lecture && ((Lecture)_lecture).GetOverlapping(day).Any()) {
                     var lec = (Lecture)_lecture;
@@ -74,12 +74,12 @@
                             dic.Add(l, i);
                         }
                     }
-                    widthStyling += " width: " + 100/nOverlaps + "%";
+                    widthStyling += " width: " + (100/nOverlaps-1) + "%";
                 }
 
 
                 <div lang="en" class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
-                    <a href="http://google.com">
+                    <a href="Schedule/Edit/@*@(_lecture.ID)*@">
                         <nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
                         @_lecture.Name<br />
                         @_lecture.Description
