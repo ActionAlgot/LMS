@@ -84,7 +84,7 @@
 
 
                 <div lang="en" class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
-                    <a href="Schedule/Edit/@*@(_lecture.ID)*@">
+                    <a href="/Lecture/Lecture?ID=@(((Lecture)_lecture).ID)">
                         <nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
                         @_lecture.Name<br />
                         @_lecture.Description
