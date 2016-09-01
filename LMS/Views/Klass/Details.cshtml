@@ -13,7 +13,7 @@
 	@Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new {})
 	@{
 		if (HttpContext.Current.User.IsInRole("Teacher")) {
-			<span> | @Html.ActionLink("Submission files", "Index", "Submission", new { KlassID = @Model.Klass.ID }, new { })</span>
+			<span> | @Html.ActionLink("Submission files", "Index", "TeacherSubmission", new { KlassID = @Model.Klass.ID }, new { })</span>
 		}
 	}
 	<div @*fuck html, that's why*@

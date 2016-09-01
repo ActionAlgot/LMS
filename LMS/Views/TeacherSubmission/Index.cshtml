@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LMS.Models.SubmissionFile>
+
+<h2>Klass @ViewBag.KlassName submitted files</h2>
+<table class="table" ng-app="CommentingApp">
+    <tr>
+        <th>
+            Submitter
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContentType)
+        </th>
+		<th>
+			Latest comment
+		</th>
+        <th>
+			New comment
+		</th>
+    </tr>
+
+@foreach (var item in Model) {
+	<tr ng-controller="CommentingController">
+		<td>
+			@Html.DisplayFor(modelItem => item.Uploader.UserName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.FileName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.ContentType)
+		</td>
+		@{
+		var LatestComment = item.Comments.Count == 0
+			? "No comments"
+			: item.Comments.Count == 1
+			? item.Comments.First().Text
+			: item.Comments.Aggregate((c1, c2) => (c1.Date > c2.Date) ? c1 : c2).Text;
+		}
+		<td ng-init="LatestCommentText='@LatestComment'">
+			{{LatestCommentText}}
+		</td>
+		<td ng-init ="Comment = { Text: '', SubmissionID: @item.ID }">
+			<input ng-model="Comment.Text" required />
+			<button ng-click="SubmitComment(Comment)">Submit</button>
+		</td>
+		<td>
+			@Html.ActionLink("Download", "Download", new { id = item.ID })
+		</td>
+	</tr>
+}
+
+</table>
+
+<form action="Submission/GetDocument" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="KlassID" value="@ViewBag.KlassID">
+	<input type="file" name="file" />
+	<input type="submit" value="Submit File" />
+</form>
