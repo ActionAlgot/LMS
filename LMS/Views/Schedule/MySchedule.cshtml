@@ -1,9 +1,15 @@
 ﻿@model LMS.Models.UserSchedule
 @using System.Linq;
+@using System.Globalization
 
 @{
     ViewBag.Title = "MySchedule";
 }
 
 <h2>My Schedule</h2>
-@Html.Partial("SchedulePartial")
+@{
+	var dfi = DateTimeFormatInfo.CurrentInfo;
+	var cal = dfi.Calendar;
+	Func<DateTime, int> getWeekOfYear = d => cal.GetWeekOfYear(d, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+}
+@Html.Partial("SchedulePartial", new LMS.Models.ScheduleWeekViewModel { Schedule = Model, Year = DateTime.Now.Year, WeekOfYear = getWeekOfYear(DateTime.Now)})

@@ -209,6 +209,7 @@
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\ScheduleWeekViewModel.cs" />
     <Compile Include="Models\UploadFileViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -311,7 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
