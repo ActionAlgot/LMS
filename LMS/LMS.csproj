@@ -176,6 +176,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Migrations\201608111243010_Initial.cs" />
     <Compile Include="Migrations\201608111243010_Initial.Designer.cs">
       <DependentUpon>201608111243010_Initial.cs</DependentUpon>
@@ -211,6 +212,7 @@
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\ScheduleWeekViewModel.cs" />
     <Compile Include="Models\UploadFileViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -310,6 +312,8 @@
     <Content Include="Views\Schedule\Schedulepartial.cshtml" />
     <Content Include="Views\SharedFiles\Share.cshtml" />
     <Content Include="Views\Comment\Feedback.cshtml" />
+    <Content Include="Views\Klass\ShowMyClasses.cshtml" />
+    <Content Include="Views\Schedule\KlassSchedule.cshtml" />
     <Content Include="Views\TeacherSubmission\Index.cshtml" />
     <Content Include="Views\TeacherSubmission\Submit.cshtml" />
   </ItemGroup>

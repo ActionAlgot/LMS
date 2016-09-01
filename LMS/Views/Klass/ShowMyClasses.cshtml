@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LMS.Models.Klass>
+
+@{
+    ViewBag.Title = "My Classes/Courses";
+}
+
+<h2>My Classes/Courses</h2>
+
+@foreach (var klass in Model)
+{
+    <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary" href="/SharedFiles/Share/@(klass.ID)">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary" href="/Schedule/KlassSchedule/@(klass.ID)">Schedule</a></h2>
+    <table class="table">
+        <tr>
+            <th>Namn</th><th>Roles</th><th>E-mail</th><th>Telephone</th></tr>
+            @foreach (var member in klass.Members)
+            {
+                <tr>
+                <td>
+                    @member.FirstName
+                    ,
+                    @member.LastName
+                </td>
+                    <td>
+                        @member.Roles.ToString()
+                    </td>
+                <td> 
+                    @member.Email</td>
+                <td>
+                    @member.PhoneNumber
+                </td>
+                </tr>
+            }
+</table>
+
+}
+

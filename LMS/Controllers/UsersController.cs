@@ -48,7 +48,7 @@ namespace LMS.Controllers
                 bool result = repo.CreateNewUser(newUser);
                 if (result)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("/Index");
                 }
             }
             return View(newUser);
@@ -104,7 +104,7 @@ namespace LMS.Controllers
 			var repo = new UserRepository();
 			if (repo.Remove(id))
 			{
-				return RedirectToAction("Index");
+				return RedirectToAction("/Index");
 			}
 			return View();
 		}

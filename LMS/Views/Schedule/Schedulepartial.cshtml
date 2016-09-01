@@ -1,12 +1,12 @@
 ﻿@using LMS.Models
+@using LMS.Helpers
 @using System.Globalization
-@model Schedule
+@using System.Linq.Expressions
+@using System.Linq
+@model ScheduleWeekViewModel
 
 <div class="schema">
 	@{
-		//Earliest start of a day in whole hours
-		var startTimeOffset = Model.Lectures.Aggregate((l1, l2) => l1.Start.Hour < l2.Start.Hour ? l1 : l2).Start.Hour * 60;
-
 		var dfi = DateTimeFormatInfo.CurrentInfo;
 		var cal = dfi.Calendar;
 		/*
@@ -26,22 +26,33 @@
 		for (int i = 0; i < 7; i++) {
 			week[i] = new List<_lecture>();
 		}
-
-		var days = Model.Lectures
-			.Where(l => l.Start.Year == DateTime.Now.Year)
-			.GroupBy(l => l.Start.DayOfYear)
-			.Where(g => getWeekOfYear(g.First().Start) == getWeekOfYear(DateTime.Now));
 		
-		foreach(var asdf in days) {
-			var index = (int)asdf.First().Start.DayOfWeek -1;
+		var days = Model.Schedule.Lectures
+			.Where(l => l.Start.Year == Model.Year)
+			.GroupBy(l => l.Start.DayOfYear)
+			.Where(g => getWeekOfYear(g.First().Start) == Model.WeekOfYear);
+			
+		//Earliest start of a day in whole hours
+		/*Expression<*/Func<_lecture, _lecture, _lecture>/*>*/ selectEarliestHour = (l1, l2) => l1.Start.Hour < l2.Start.Hour ? l1 : l2;
+
+		foreach (var asdf in days) {
+			var index = (int)asdf.First().Start.DayOfWeek - 1;
 			week[index == -1 ? 7 : index].AddRange(asdf);
 		}
+
+		var startTimeOffset = !week.Any(d => d.Any())
+			? 8 * 60 	//TODO do not declare default schedule starting time here
+			: (week
+				.Where(d => d.Any())	//do not aggregate over empty
+				.Select(d => d.Aggregate(selectEarliestHour))
+				.Aggregate(selectEarliestHour)
+				.Start.Hour * 60);
 			
 		var iWeek = 1;
 	}
 	@foreach (var day in week) {
 		<div class="day">
-			<h2>@((DayOfWeek)iWeek)</h2>
+			<h2>@((DayOfWeek)iWeek) - @(DateHelper.FirstDateOfWeekISO8601(Model.Year, Model.WeekOfYear).AddDays(iWeek > 0 ? iWeek-1 : 6).ToString("MM-dd"))</h2>
 			@{iWeek = iWeek == 6 ? 0 : iWeek + 1;}
 
 			@foreach (var _lecture in day) {

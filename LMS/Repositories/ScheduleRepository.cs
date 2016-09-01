@@ -13,5 +13,9 @@ namespace LMS.Repositories {
 			if(user == null) return null;
 			return new UserSchedule { Lectures = (ICollection<Lecture>)(user.Klasses.SelectMany(k => k.Schedule.Lectures).ToList()) };
 		}
+
+		public KlassSchedule GetKlassSchedule(int kID) {
+			return ctx.Schedules.FirstOrDefault(s => s.Klass.ID == kID);
+		}
 	}
 }
