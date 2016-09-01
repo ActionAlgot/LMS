@@ -8,7 +8,8 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Commenter.FirstName)
+			Teacher
+            @*@Html.DisplayNameFor(model => model.Commenter.FirstName)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Submission.FileName)
@@ -29,6 +30,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Commenter.FirstName)
+			@Html.DisplayFor(modelItem => item.Commenter.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Submission.FileName)

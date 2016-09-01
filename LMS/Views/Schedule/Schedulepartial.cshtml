@@ -48,36 +48,51 @@
                 double heightStretch = 1.2;
                 int lectureStartMin = (int)((_lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch);
                 int lectureTimeMin = (int)((_lecture.End - _lecture.Start).TotalMinutes * heightStretch);
-				
                 string widthStyling = "";   //place up to a few overlapping lectures next side by side
                 if (_lecture is Lecture && ((Lecture)_lecture).GetOverlapping(day).Any()) {
                     var lec = (Lecture)_lecture;
-					var nOverlaps = lec.GetMaxTreeOverlaps(day);
-					if (dic.ContainsKey(lec)) { widthStyling += " left: " + (100 / nOverlaps) * dic[lec] + "%;"; }
-					else { dic.Add(lec, 0); }
-					foreach (Lecture l in lec.GetOverlapping(day))  {
-						if (!dic.ContainsKey(l)) {	//set unset indexes of overlapping
-							var prevIndex = l.GetOverlapping(day)
-								.Where(j => dic.ContainsKey(j))
-								.Select(j => dic[j])
-								.OrderBy(n => n);
-							int i = 0;
-							foreach (int n in prevIndex) {
-								if (n > i) { break; }
-								i++;
-							}
-							dic.Add(l, i);
-						}
-					}
-					widthStyling += " width: " + 100/nOverlaps + "%";
+                    var nOverlaps = lec.GetMaxTreeOverlaps(day);
+                    if (dic.ContainsKey(lec)) { widthStyling += " left: " + (100 / nOverlaps) * dic[lec] + "%;"; }
+                    else { dic.Add(lec, 0); }
+                    foreach (Lecture l in lec.GetOverlapping(day))  {
+                        if (!dic.ContainsKey(l)) {  //set unset indexes of overlapping
+                            var prevIndex = l.GetOverlapping(day)
+                                .Where(j => dic.ContainsKey(j))
+                                .Select(j => dic[j])
+                                .OrderBy(n => n);
+                            int i = 0;
+                            foreach (int n in prevIndex) {
+                                if (n > i) { break; }
+                                i++;
+                            }
+                            dic.Add(l, i);
+                        }
+                    }
+                    widthStyling += " width: " + 100/nOverlaps + "%";
                 }
 
-				<div class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
-					@_lecture.Start.ToString("HH:mm")<br/>
-					@_lecture.Name
+
+                <div lang="en" class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
+                    <a href="http://google.com">
+                        <nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
+                        @_lecture.Name<br />
+                        @_lecture.Description
+                    </a>
 				</div>
 			}
 		</div>
 	}
 </div>
 <div style="clear: both;" />
+
+<script>
+    var overflowing = function () {
+        var elements = document.getElementsByClassName("lecture");
+        for (var i = 0, max = elements.length; i < max; i++) {
+            if (elements[i].clientHeight < elements[i].scrollHeight ||
+            elements[i].clientWidth + 35 < elements[i].scrollWidth) {
+                console.log("found hoverable");
+                elements[i].className += " hoverable";
+            } } }
+    overflowing();
+</script>
