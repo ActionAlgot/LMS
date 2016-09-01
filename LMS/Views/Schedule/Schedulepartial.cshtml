@@ -1,4 +1,5 @@
 ﻿@using LMS.Models
+@using System.Globalization
 @model Schedule
 
 <div class="schema">
@@ -6,17 +7,42 @@
 		//Earliest start of a day in whole hours
 		var startTimeOffset = Model.Lectures.Aggregate((l1, l2) => l1.Start.Hour < l2.Start.Hour ? l1 : l2).Start.Hour * 60;
 
+		var dfi = DateTimeFormatInfo.CurrentInfo;
+		var cal = dfi.Calendar;
+		/*
 		//var overlapping = Model.GetOverlaps(10);
 		var days = ((IEnumerable<_lecture>)Model.Lectures
 			//.Where(l => l.GetOverlapping(overlapping).Any() == false)	//TODO: shove info in overlapping
 			)//.Concat(overlapping)
 			.GroupBy(l => l.Start.Day)
-			.OrderBy(g => g.Key);
+			.OrderBy(g => g.Key)
+			.GroupBy(g => g.First().Start.Year)
+		 */
 		var dic = new Dictionary<_lecture, int>();
+		
+		Func<DateTime, int> getWeekOfYear = d => cal.GetWeekOfYear(d, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+		
+		var week = new List<_lecture>[7];
+		for (int i = 0; i < 7; i++) {
+			week[i] = new List<_lecture>();
+		}
+
+		var days = Model.Lectures
+			.Where(l => l.Start.Year == DateTime.Now.Year)
+			.GroupBy(l => l.Start.DayOfYear)
+			.Where(g => getWeekOfYear(g.First().Start) == getWeekOfYear(DateTime.Now));
+		
+		foreach(var asdf in days) {
+			var index = (int)asdf.First().Start.DayOfWeek -1;
+			week[index == -1 ? 7 : index].AddRange(asdf);
+		}
+			
+		var iWeek = 1;
 	}
-	@foreach (var day in days) {
+	@foreach (var day in week) {
 		<div class="day">
-			<h2>@day.First().Start.DayOfWeek</h2>
+			<h2>@((DayOfWeek)iWeek)</h2>
+			@{iWeek = iWeek == 6 ? 0 : iWeek + 1;}
 
 			@foreach (var _lecture in day) {
                 double heightStretch = 1.2;
