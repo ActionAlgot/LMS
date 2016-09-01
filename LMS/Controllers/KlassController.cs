@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace LMS.Controllers
 {
@@ -14,12 +15,13 @@ namespace LMS.Controllers
         // GET: Klass
 		[Authorize(Roles="Teacher")]
         public ActionResult Index(){
-
-			HttpCookie UserEditLocation = new HttpCookie("UserEditLocation");
-			UserEditLocation.Value = "Klass";
-			Response.Cookies.Add(UserEditLocation);
-
 			return View(repo.GetAll());
+        }
+
+        [Authorize]
+        public ActionResult ShowMyClasses()
+        {
+            return View(repo.GetMyClasses(User.Identity.GetUserId()));
         }
 
         [AttendsKlass(ParamFrom = "2")]
