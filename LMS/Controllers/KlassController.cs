@@ -56,6 +56,7 @@ namespace LMS.Controllers
 		[Authorize(Roles = "Teacher")]
 		[HttpPost]
 		public ActionResult Create(Klass model) {
+			model.Schedule = new KlassSchedule();
 			if (ModelState.IsValid) {
 				repo.Add(model);
 				return RedirectToAction("Index");
