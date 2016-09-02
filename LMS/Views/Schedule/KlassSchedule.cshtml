@@ -7,7 +7,7 @@
 
 <h2>@Model.Klass.Name Schedule</h2>
 
-@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID}, new {})
+@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID, rUrl = Request.Url.AbsoluteUri }, new { })
 
 @{
 	var dfi = DateTimeFormatInfo.CurrentInfo;

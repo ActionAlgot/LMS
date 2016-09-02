@@ -53,7 +53,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-	@Html.ActionLink("Remove", "Remove", new { id = Model.ID })
-    @* | Html.ActionLink("Back to schedule", "Index")*@ <!--'myschedule' or 'klassschedule'-->
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID, rUrl = ViewBag.rUrl }) |
+	@Html.ActionLink("Remove", "Remove", new { id = Model.ID, rUrl = ViewBag.rUrl }) | 
+	<a href="@ViewBag.rUrl">back to schedule</a>
 </p>
