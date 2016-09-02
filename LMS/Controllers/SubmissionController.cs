@@ -12,7 +12,7 @@ namespace LMS.Controllers
 {
 	//[Authorize(Roles="Teacher")]
 	//todo här ska studeter inte komma åt heka filecontroller.
-	[Authorize(Roles = "Student")]
+	[Authorize(Roles = "Teacher")]
     public class SubmissionController : FileController<SubmissionFile>{
 
 		//public ActionResult Create()
@@ -57,5 +57,12 @@ namespace LMS.Controllers
 		//{
 		//	return View();
 		//}
+
+		public ActionResult Incoming() {
+			var asdf = new KlassRepository()
+				.GetMyClasses(User.Identity.GetUserId())
+				.SelectMany(k => k.Submission);
+			return View(asdf);
+		}
     }
 }

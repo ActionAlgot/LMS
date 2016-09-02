@@ -322,10 +322,10 @@
     <Content Include="Views\Lecture\Create.cshtml" />
     <Content Include="Views\Lecture\Remove.cshtml" />
     <Content Include="Views\Schedule\SelectKlassPartial.cshtml" />
+    <Content Include="Views\Submission\Incoming.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Submission\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
