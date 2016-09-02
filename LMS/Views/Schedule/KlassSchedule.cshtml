@@ -6,9 +6,9 @@
 @using System.Diagnostics;
 
 <h2>@Model.Klass.Name Schedule</h2>
-
-@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID, rUrl = Request.Url.AbsoluteUri }, new { })
-
+@if (HttpContext.Current.User.IsInRole("Teacher")){
+	@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID, rUrl = Request.Url.AbsoluteUri }, new { })
+}
 @{
 	var dfi = DateTimeFormatInfo.CurrentInfo;
 	var cal = dfi.Calendar;
