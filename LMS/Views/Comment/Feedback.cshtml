@@ -4,12 +4,12 @@
     ViewBag.Title = "View";
 }
 
-<h2>View</h2>
+<h2>Feedback</h2>
 <table class="table">
-    <tr>
+    @*<tr>
         <th>
 			Teacher
-            @*@Html.DisplayNameFor(model => model.Commenter.FirstName)*@
+           
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Submission.FileName)
@@ -24,11 +24,29 @@
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
+@foreach (var thing in Model)
+{
+	@Html.DisplayFor(modelItem => thing.Submission)
+}
 
-@foreach (var item in Model) {
+
+@foreach (var item in Model.GroupBy(c => c.Submission).OrderBy(s => s.Key.Comments.Max(c => c.Date)))
+{
     <tr>
-        <td>
+		<td>
+			<p>@Html.DisplayFor(modelItem => item.Key.FileName)</p>
+				
+			@foreach (var subitem in item)
+			{
+				@subitem.Commenter.GetFullName()
+				
+				<p>@subitem.Text @subitem.Date</p>
+			
+			}
+		</td>
+		
+        @*<td>
             @Html.DisplayFor(modelItem => item.Commenter.FirstName)
 			@Html.DisplayFor(modelItem => item.Commenter.LastName)
         </td>
@@ -43,7 +61,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
-        </td>
+        </td>*@
     </tr>
 }
 
