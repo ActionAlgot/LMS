@@ -4,10 +4,10 @@
     ViewBag.Title = "Lecture";
 }
 
-<h2>Lecture</h2>
+<h2>Lecture Details</h2>
 
 <div>
-    <h4>Lecture</h4>
+    <h4>@Html.DisplayFor(model => model.Schedule.Klass.Name)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -53,9 +53,10 @@
     </dl>
 </div>
 <p>
+    <a class="btn btn-primary" href="@ViewBag.rUrl">Back to schedule</a> <i>&nbsp;</i>
 	@if (HttpContext.Current.User.IsInRole("Teacher")) { 
-		@Html.ActionLink("Edit", "Edit", new { id = Model.ID, rUrl = ViewBag.rUrl })<span> | </span>
-		@Html.ActionLink("Remove", "Remove", new { id = Model.ID, rUrl = ViewBag.rUrl })<span> | </span>
-	}
-	<a href="@ViewBag.rUrl">Back to schedule</a>
+		@Html.ActionLink("Edit", "Edit", new { id = Model.ID, rUrl = ViewBag.rUrl }, new { @class = "btn btn-success" }) <i>&nbsp;</i>
+		@Html.ActionLink("Remove", "Remove", new { id = Model.ID, rUrl = ViewBag.rUrl }, new { @class = "btn btn-danger" })       
+    }
+
 </p>
