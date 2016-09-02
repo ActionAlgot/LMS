@@ -5,7 +5,18 @@
 @using System
 @using System.Diagnostics;
 
-<h2>@Model.Klass.Name Schedule</h2>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>@Model.Klass.Name Schedule</h2>
+    </div>
+
+    @Html.Partial("SelectKlassPartial")
+
+</div>
+
+
 
 @Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID}, new {})
 

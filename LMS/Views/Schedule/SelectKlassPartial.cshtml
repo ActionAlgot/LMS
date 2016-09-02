@@ -1,0 +1,58 @@
+﻿<div class="col-md-6">
+    <form>
+        <div style="float: right;">
+            <label class="control-label">Show Schedules</label>
+            <select id="KlassSelector" class="form-control" onchange="document.location = this.value; return false;">
+                @{  string yearlink = Request.Params["Year"];
+                    string weeklink = Request.Params["Week"];
+                    string datepart = "";
+                    if (yearlink != null)
+                    {
+                        datepart = "?Year=" + yearlink + "&Week=" + weeklink;
+                    }
+                }
+                <option data-simplevalue="0" value="/Schedule/MySchedule/@(datepart)">All</option>
+                @foreach (var k in ViewBag.Klasses)
+                {
+                    yearlink = Request.Params["Year"];
+                    weeklink = Request.Params["Week"];
+                    datepart = "";
+                    if (yearlink != null)
+                    {
+                        datepart = "?Year=" + yearlink + "&Week=" + weeklink;
+                    }
+                    <option data-simplevalue="@(k.ID)" value="/Schedule/KlassSchedule/@(k.ID)@(datepart)">@(k.Name)</option>
+                }
+            </select>
+        </div>
+    </form>
+    <script>
+            var restoreDropDown = function () {
+                function isInt(value) {
+                    return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
+                }
+                var pathfix = window.location.pathname;
+                var possibleKlass = pathfix.substr(pathfix.length - 1);
+                if (isInt(possibleKlass)) {
+                    //possibleKlass = parseInt(possibleKlass, 10);
+
+                    var selectKlassBox = document.getElementById("KlassSelector");
+                    for (var i = 0; i < selectKlassBox.length; i++) {
+                        if (selectKlassBox.options[i].getAttribute("data-simplevalue") == possibleKlass) {
+                            selectKlassBox.options[i].selected = true;
+                        }
+                    }
+                    
+                }
+            };
+            function ready(fn) {
+                if (document.readyState != 'loading') {
+                    fn();
+                } else {
+                    document.addEventListener('DOMContentLoaded', fn);
+                }
+            };
+            ready(restoreDropDown);
+    </script>
+</div>
+

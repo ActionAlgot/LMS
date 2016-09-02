@@ -21,7 +21,8 @@ namespace LMS.Controllers {
 		public ActionResult KlassSchedule(int ID, int? year, int? week) {
 			ViewBag.Year = year;
 			ViewBag.Week = week;
-			return View(repo.GetKlassSchedule(ID));
+            ViewBag.Klasses = new KlassRepository().GetMyClasses(User.Identity.GetUserId());
+            return View(repo.GetKlassSchedule(ID));
 		}
     }
 }

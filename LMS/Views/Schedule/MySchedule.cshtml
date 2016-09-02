@@ -9,13 +9,22 @@
     ViewBag.Title = "MySchedule";
 }
 
-<h2>My Schedule</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h2>My Schedule</h2>
+    </div>
+
+    @Html.Partial("SelectKlassPartial")
+
+</div>
+
 
 <div>
-	View specific klass schedule:
-	@foreach (var k in ViewBag.Klasses) {
+
+	@*View specific klass schedule:
+    @foreach (var k in ViewBag.Klasses) {
 		<div>@Html.ActionLink((string)k.Name, "KlassSchedule", new { ID = k.ID }) </div>
-	}
+	}*@
 </div>
 
 @{
