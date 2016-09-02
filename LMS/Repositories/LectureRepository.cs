@@ -23,5 +23,10 @@ namespace LMS.Repositories {
 			ctx.SaveChanges();
 			return true;
 		}
+
+		public void Delete(int ID) {
+			ctx.Lectures.Remove(get(ID));
+			ctx.SaveChanges();
+		}
 	}
 }

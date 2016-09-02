@@ -321,6 +321,7 @@
     <Content Include="Views\TeacherSubmission\Submit.cshtml" />
     <Content Include="Views\Lecture\Edit.cshtml" />
     <Content Include="Views\Lecture\Create.cshtml" />
+    <Content Include="Views\Lecture\Remove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
