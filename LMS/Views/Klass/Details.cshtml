@@ -16,7 +16,9 @@
 			<span> | @Html.ActionLink("Submission files", "Index", "TeacherSubmission", new { KlassID = @Model.Klass.ID }, new { })</span>
 		}
 	}
+	<button ng-click="EditingActive = !EditingActive" class="pull-right">{{EditingActive ? "Stop editing" : "Edit participitation"}}</button>
 	<div @*fuck html, that's why*@
+		 ng-show="EditingActive"
 		 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.AddMember(user)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
 
 		<button ng-click="showshit = !showshit">Add members</button>
@@ -38,7 +40,7 @@
 		</dd>
 	</dl>
 
-	<div ng-init="MembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.RemoveMember(user)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
+	<div ng-init="MembersTableAppends.push('&lt;td ng-show=&quot;EditingActive&quot;&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.RemoveMember(user)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
 		<div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', Members)">
 			<div ng-controller="UserListController" ng-init="tag='Members'; GetShit()">
 				@Html.Partial("~/Views/Users/UserListPartial.cshtml")
