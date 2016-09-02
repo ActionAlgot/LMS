@@ -165,6 +165,7 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KlassController.cs" />
+    <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Repositories\KlassRepository.cs" />
+    <Compile Include="Repositories\LectureRepository.cs" />
     <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -313,8 +315,12 @@
     <Content Include="Views\Comment\Feedback.cshtml" />
     <Content Include="Views\Klass\ShowMyClasses.cshtml" />
     <Content Include="Views\Schedule\KlassSchedule.cshtml" />
+    <Content Include="Views\Lecture\Lecture.cshtml" />
     <Content Include="Views\TeacherSubmission\Index.cshtml" />
     <Content Include="Views\TeacherSubmission\Submit.cshtml" />
+    <Content Include="Views\Lecture\Edit.cshtml" />
+    <Content Include="Views\Lecture\Create.cshtml" />
+    <Content Include="Views\Lecture\Remove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
