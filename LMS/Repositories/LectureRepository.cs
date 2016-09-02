@@ -13,7 +13,7 @@ namespace LMS.Repositories {
 		}
 
 		public bool Update(Lecture lecture) {
-			ctx.Lectures.Add(lecture);
+			ctx.Entry(lecture).State = System.Data.Entity.EntityState.Modified;
 			ctx.SaveChanges();
 			return true;
 		}

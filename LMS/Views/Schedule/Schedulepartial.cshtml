@@ -9,15 +9,7 @@
 	@{
 		var dfi = DateTimeFormatInfo.CurrentInfo;
 		var cal = dfi.Calendar;
-		/*
-		//var overlapping = Model.GetOverlaps(10);
-		var days = ((IEnumerable<_lecture>)Model.Lectures
-			//.Where(l => l.GetOverlapping(overlapping).Any() == false)	//TODO: shove info in overlapping
-			)//.Concat(overlapping)
-			.GroupBy(l => l.Start.Day)
-			.OrderBy(g => g.Key)
-			.GroupBy(g => g.First().Start.Year)
-		 */
+		
 		var dic = new Dictionary<_lecture, int>();
 		
 		Func<DateTime, int> getWeekOfYear = d => cal.GetWeekOfYear(d, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
@@ -28,23 +20,22 @@
 		}
 		
 		var days = Model.Schedule.Lectures
-			.Where(l => l.Start.Year == Model.Year)
+			.Where(l => l.Start.Year == Model.Year)	//TODO handle year shift
 			.GroupBy(l => l.Start.DayOfYear)
 			.Where(g => getWeekOfYear(g.First().Start) == Model.WeekOfYear);
 			
-		//Earliest start of a day in whole hours
+		//Earliest start of a day in whole hours	//expression documentation and examples is fucking useless
 		/*Expression<*/Func<_lecture, _lecture, _lecture>/*>*/ selectEarliestHour = (l1, l2) => l1.Start.Hour < l2.Start.Hour ? l1 : l2;
 
-		foreach (var asdf in days) {
+		foreach (var asdf in days) {	//populate week
 			var index = (int)asdf.First().Start.DayOfWeek - 1;
-			week[index == -1 ? 7 : index].AddRange(asdf);
+			week[index == -1 ? 6 : index].AddRange(asdf);
 		}
 
 		var startTimeOffset = !week.Any(d => d.Any())
 			? 8 * 60 	//TODO do not declare default schedule starting time here
 			: (week
-				.Where(d => d.Any())	//do not aggregate over empty
-				.Select(d => d.Aggregate(selectEarliestHour))
+				.SelectMany(d => d)
 				.Aggregate(selectEarliestHour)
 				.Start.Hour * 60);
 			
@@ -56,15 +47,18 @@
 			@{iWeek = iWeek == 6 ? 0 : iWeek + 1;}
 
 			@foreach (var _lecture in day) {
+				
                 double heightStretch = 1.0;
                 int lectureStartMin = (int)((_lecture.Start.TimeOfDay.TotalMinutes - startTimeOffset) *heightStretch) - 2;
                 int lectureTimeMin = (int)((_lecture.End - _lecture.Start).TotalMinutes * heightStretch) + 1;
+				
                 string widthStyling = "";   //place up to a few overlapping lectures next side by side
                 if (_lecture is Lecture && ((Lecture)_lecture).GetOverlapping(day).Any()) {
                     var lec = (Lecture)_lecture;
                     var nOverlaps = lec.GetMaxTreeOverlaps(day);
                     if (dic.ContainsKey(lec)) { widthStyling += " left: " + (100 / nOverlaps) * dic[lec] + "%;"; }
                     else { dic.Add(lec, 0); }
+					
                     foreach (Lecture l in lec.GetOverlapping(day))  {
                         if (!dic.ContainsKey(l)) {  //set unset indexes of overlapping
                             var prevIndex = l.GetOverlapping(day)
@@ -84,11 +78,11 @@
 
 
                 <div lang="en" class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
-                    <a href="/Lecture/Lecture?ID=@(((Lecture)_lecture).ID)">
-                        <nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
-                        @_lecture.Name<br />
-                        @_lecture.Description
-                    </a>
+					<a href="/Lecture/Lecture?ID=@(((Lecture)_lecture).ID)&rUrl=@(Request.Url.AbsoluteUri)">
+						<nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
+						@_lecture.Name<br />
+						@_lecture.Description
+					</a>
 				</div>
 			}
 		</div>

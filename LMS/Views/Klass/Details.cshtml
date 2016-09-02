@@ -5,49 +5,46 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Class/Course Manager</h2>
+<h2>Manage @Model.Klass.Name</h2>
 
 <div ng-app="KlassApp" ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
-	<h4>@Model.Klass.Name</h4>
-	<hr />
-	@Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new {})
-	@{
-		if (HttpContext.Current.User.IsInRole("Teacher")) {
-			<span> | @Html.ActionLink("Submission files", "Index", "TeacherSubmission", new { KlassID = @Model.Klass.ID }, new { })</span>
-		}
-	}
-	<div @*fuck html, that's why*@
-		 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.AddMember(user)&quot;&gt;Add&lt;/button&gt;&lt;/td&gt;')">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-12">
+            @Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new { @class = "btn btn-primary" })
+            @{
+                if (HttpContext.Current.User.IsInRole("Teacher"))
+                {
+                    <i>&nbsp;</i> @Html.ActionLink("Submitted Assignments", "Index", "TeacherSubmission", new { KlassID = @Model.Klass.ID }, new { @class = "btn btn-primary" })
+                }
+            }
 
-		<button ng-click="showshit = !showshit">Add members</button>
-		<div ng-show="showshit" ng-init="GetData('getnonmembers?id=' + '@Model.Klass.ID', NonMembers)">
-			<div ng-controller="UserListController" ng-init="tag='NonMembers'; GetShit()">
-				@Html.Partial("~/Views/Users/UserListPartial.cshtml")
-			</div>
-		</div>
+            <i>&nbsp;</i><a class="btn btn-primary" href="/Schedule/KlassSchedule/@(Model.Klass.ID)">Schedule</a>
+            <button ng-click="EditingActive = !EditingActive" class="btn btn-primary pull-right">{{EditingActive ? "Stop editing" : "Edit participitation"}}</button>
+            <div @*fuck html, that's why*@
+                 ng-show="EditingActive"
+                 ng-init="showshit = false; NonMembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-info&quot;ng-click=&quot;Funcs.AddMember(user)&quot;&gt;Join Class&lt;/button&gt;&lt;/td&gt;')">
 
-	</div>
+                <button class="btn btn-primary pull-right" style="margin-top: 10px;margin-bottom:10px;" ng-click="showshit = !showshit">Add members</button>
+                <div ng-show="showshit" ng-init="GetData('getnonmembers?id=' + '@Model.Klass.ID', NonMembers)">
+                    <div ng-controller="UserListController" ng-init="tag='NonMembers'; GetShit()">
+                        @Html.Partial("~/Views/Users/UserListPartial.cshtml")
+                    </div>
+                </div>
+            </div>
 
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.Klass.Name)
-		</dt>
+            <div ng-init="MembersTableAppends.push('&lt;td ng-show=&quot;EditingActive&quot;&gt;&lt;button class=&quot;btn btn-warning&quot;ng-click=&quot;Funcs.RemoveMember(user)&quot;&gt;Leave Class&lt;/button&gt;&lt;/td&gt;')">
+                <div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', Members)">
+                    <div ng-controller="UserListController" ng-init="tag='Members'; GetShit()">
+                        @Html.Partial("~/Views/Users/UserListPartial.cshtml")
+                    </div>
+                </div>
+            </div>
 
-		<dd>
-			@Html.DisplayFor(model => model.Klass.Name)
-		</dd>
-	</dl>
 
-	<div ng-init="MembersTableAppends.push('&lt;td&gt;&lt;button class=&quot;btn btn-link&quot;ng-click=&quot;Funcs.RemoveMember(user)&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;')">
-		<div ng-init="userList={data: null}; GetData('getmembers?id=' + '@Model.Klass.ID', Members)">
-			<div ng-controller="UserListController" ng-init="tag='Members'; GetShit()">
-				@Html.Partial("~/Views/Users/UserListPartial.cshtml")
-			</div>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <p>
-	@Html.ActionLink("Edit", "Edit", "Index")|
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Classes / Courses", "Index", new { }, new { @class="btn btn-primary" })
 </p>
