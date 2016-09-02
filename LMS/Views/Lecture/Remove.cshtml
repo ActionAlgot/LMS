@@ -57,8 +57,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Remove" class="btn btn-default" /> |
-			<a href="@ViewBag.rUrl">back to schedule</a>
+            <a class="btn btn-primary" href="@ViewBag.rUrl">Back to schedule</a> <i>&nbsp;</i>
+            <input type="submit" value="Remove" class="btn btn-danger" />
+
         </div>
     }
 </div>

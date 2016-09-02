@@ -5,6 +5,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
+using System;
 
 namespace LMS.Models
 {
@@ -34,6 +36,11 @@ namespace LMS.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public string GetUserRoles()
+        {
+            return this.Roles.ToString(); //GetRolesForUser(appUser.UserName);
         }
 
 		public string GetFullName()

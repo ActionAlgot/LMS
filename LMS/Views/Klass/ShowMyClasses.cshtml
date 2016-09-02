@@ -17,11 +17,11 @@
                 <tr>
                 <td>
                     @member.FirstName
-                    ,
                     @member.LastName
                 </td>
                     <td>
-                        @member.Roles
+                        @member.GetUserRoles().ToString()
+
                     </td>
                 <td> 
                     @member.Email</td>

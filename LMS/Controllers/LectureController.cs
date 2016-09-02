@@ -39,7 +39,10 @@ namespace LMS.Controllers
 		[HttpGet, Authorize(Roles = "Teacher")]
 		public ActionResult Create(int sID, string rUrl) {
 			ViewBag.rUrl = rUrl ?? defaultReturnUrl;
-			return View(new Lecture { ScheduleID = sID });
+            var lect = new Lecture { ScheduleID = sID };
+            lect.Start = DateTime.Now;
+            lect.End = DateTime.Now.AddHours(1);
+            return View(lect);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
