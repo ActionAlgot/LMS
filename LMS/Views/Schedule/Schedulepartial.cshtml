@@ -37,7 +37,7 @@
 
 		foreach (var asdf in days) {
 			var index = (int)asdf.First().Start.DayOfWeek - 1;
-			week[index == -1 ? 7 : index].AddRange(asdf);
+			week[index == -1 ? 6 : index].AddRange(asdf);
 		}
 
 		var startTimeOffset = !week.Any(d => d.Any())
@@ -84,11 +84,11 @@
 
 
                 <div lang="en" class="lecture schema_yellow" style="top: @(lectureStartMin)px; height: @(lectureTimeMin)px;@widthStyling">
-                    <a href="/Lecture/Lecture?ID=@(((Lecture)_lecture).ID)">
-                        <nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
-                        @_lecture.Name<br />
-                        @_lecture.Description
-                    </a>
+					<a href="/Lecture/Lecture?ID=@(((Lecture)_lecture).ID)&rUrl=@(Request.Url.AbsoluteUri)">
+						<nobr><span class="timeInfo">@_lecture.Start.ToString("HH:mm")</span></nobr><br />
+						@_lecture.Name<br />
+						@_lecture.Description
+					</a>
 				</div>
 			}
 		</div>

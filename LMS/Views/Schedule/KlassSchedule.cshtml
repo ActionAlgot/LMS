@@ -5,6 +5,8 @@
 @using System
 @using System.Diagnostics;
 
+<h2>@Model.Klass.Name Schedule</h2>
+
 
 
 <div class="row">
@@ -16,9 +18,11 @@
 
 </div>
 
+@if (HttpContext.Current.User.IsInRole("Teacher")){
+	@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID, rUrl = Request.Url.AbsoluteUri }, new { })
+}
 
-
-@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID}, new {})
+@*@Html.ActionLink("Create new Lecture", "Create", "Lecture", new { sID = Model.ID}, new {})*@
 
 @{
 	var dfi = DateTimeFormatInfo.CurrentInfo;
