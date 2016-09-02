@@ -8,7 +8,7 @@
 <h2>Class/Course Manager</h2>
 
 <div ng-app="KlassApp" ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
-	<h4>@Model.Klass.Name</h4>
+	<h4>@Model.Klass.Name<a class="btn btn-primary pull-right" href="/Schedule/KlassSchedule/@(Model.Klass.ID)">Schedule</a></h4>
 	<hr />
 	@Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new {})
 	@{
@@ -16,6 +16,7 @@
 			<span> | @Html.ActionLink("Submission files", "Index", "TeacherSubmission", new { KlassID = @Model.Klass.ID }, new { })</span>
 		}
 	}
+	
 	<button ng-click="EditingActive = !EditingActive" class="pull-right">{{EditingActive ? "Stop editing" : "Edit participitation"}}</button>
 	<div @*fuck html, that's why*@
 		 ng-show="EditingActive"
