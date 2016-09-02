@@ -3,7 +3,8 @@
 
 	app.controller('KlassMemberTable', ["$scope", "$http", function ($scope, $http) {
 		$scope.KlassId = null;
-		$scope.NonMembers = {data: null};
+		$scope.NonMembers = { data: null };
+		$scope.EditingActive = false;
 		$scope.Members = {data: null};
 		$scope.NonMembersTableAppends = [];
 		$scope.MembersTableAppends = [];
