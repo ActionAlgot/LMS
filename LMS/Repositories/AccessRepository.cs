@@ -79,6 +79,10 @@ namespace LMS.Repositories
             return false;
         }
 
+		public bool IsStudent(string Id) {
+			return UserManager.IsInRole(Id, "Student");
+		}
+
         public bool IsAdmin(ApplicationUser user)
         {
             if (UserManager.IsInRole(user.Id, "Admin"))

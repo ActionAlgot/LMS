@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<LMS.Models.Klass>
+@using LMS.Repositories
 
 @{
     ViewBag.Title = "My Classes/Courses";
@@ -6,23 +7,24 @@
 
 <h2>My Classes/Courses</h2>
 
-@foreach (var klass in Model)
-{
+@foreach (var klass in Model) {
     <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary" href="/SharedFiles/Share/@(klass.ID)">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary" href="/Schedule/KlassSchedule/@(klass.ID)">Schedule</a></h2>
     <table class="table">
         <tr>
-            <th>Namn</th><th>Roles</th><th>E-mail</th><th>Telephone</th></tr>
-            @foreach (var member in klass.Members)
+            <th>Namn</th><th>E-mail</th><th>Telephone</th>
+		</tr>
+		@{
+			//Identity is a filthy whore bitch, that's why
+			AccessRepository accessRepo = new AccessRepository();
+		}
+		<tr><th>Teachers:</th></tr>
+            @foreach (var member in klass.Members.Where(m => accessRepo.IsTeacher(m.Id)))
             {
                 <tr>
                 <td>
                     @member.FirstName
                     @member.LastName
                 </td>
-                    <td>
-                        @member.GetUserRoles().ToString()
-
-                    </td>
                 <td> 
                     @member.Email</td>
                 <td>
@@ -30,6 +32,21 @@
                 </td>
                 </tr>
             }
+		<tr><th>Students:</th></tr>
+		@foreach (var member in klass.Members.Where(m => accessRepo.IsStudent(m.Id))) {
+			<tr>
+				<td>
+					@member.FirstName
+					@member.LastName
+				</td>
+				<td>
+					@member.Email
+				</td>
+				<td>
+					@member.PhoneNumber
+				</td>
+			</tr>
+		}
 </table>
 
 }
