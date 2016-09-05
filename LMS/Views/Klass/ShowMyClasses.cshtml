@@ -8,7 +8,7 @@
 <h2>My Classes/Courses</h2>
 
 @foreach (var klass in Model) {
-    <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary" href="/SharedFiles/Share/@(klass.ID)">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary" href="/Schedule/KlassSchedule/@(klass.ID)">Schedule</a></h2>
+    <h2>@(klass.Name)&nbsp;&nbsp;<a class="btn btn-primary" href="/SharedFiles/Share?kID=@(klass.ID)">Shared files</a>&nbsp;&nbsp;<a class="btn btn-primary" href="/Schedule/KlassSchedule/@(klass.ID)">Schedule</a></h2>
     <table class="table">
         <tr>
             <th>Namn</th><th>E-mail</th><th>Telephone</th>
