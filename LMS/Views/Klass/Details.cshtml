@@ -10,7 +10,7 @@
 <div ng-app="KlassApp" ng-controller="KlassMemberTable" ng-init="KlassId = @Model.Klass.ID">
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-md-12">
-            @Html.ActionLink("Shared files", "Index", "SharedFiles", new { KlassID = @Model.Klass.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Shared files", "Share", "SharedFiles", new { kID = @Model.Klass.ID }, new { @class = "btn btn-primary" })
             @{
                 if (HttpContext.Current.User.IsInRole("Teacher"))
                 {
