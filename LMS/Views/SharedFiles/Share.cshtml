@@ -45,13 +45,18 @@
 			Model.SelectedKlassId = ViewBag.KlassID;
 			@Html.HiddenFor(m => m.SelectedKlassId)
 		}
-
+		<input type="hidden" name="returnToAll" value="@(ViewBag.KlassID == null ? "true" : "false")">
         <div class="col-md-6 col-sm-6 col-lg-6">
             <div class="form-group">
                 <label for="exampleInputFile">Choose file to share</label>
                 <input type="file" name="file" />
                 <p class="help-block">Use a zip archive to share several files.</p>
             </div>
+			@if (ViewBag.KlassID != null) {
+				<div class="form-group">
+					<button class="btn btn-success" type="submit">Share File</button>
+				</div>
+			}
         </div>
     </div>
 
