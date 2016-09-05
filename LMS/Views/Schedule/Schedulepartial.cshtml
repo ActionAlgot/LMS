@@ -43,7 +43,7 @@
 	}
 	@foreach (var day in week) {
 		<div class="day">
-			<h2>@((DayOfWeek)iWeek) - @(DateHelper.FirstDateOfWeekISO8601(Model.Year, Model.WeekOfYear).AddDays(iWeek > 0 ? iWeek-1 : 6).ToString("MM-dd"))</h2>
+			<h2><nobr><span class="visible-sm visible-md">@((DayOfWeek)iWeek)</span><span class="hidden-sm hidden-md">@((DayOfWeek)iWeek) - @(DateHelper.FirstDateOfWeekISO8601(Model.Year, Model.WeekOfYear).AddDays(iWeek > 0 ? iWeek - 1 : 6).ToString("MM-dd"))</span></nobr></h2>
 			@{iWeek = iWeek == 6 ? 0 : iWeek + 1;}
 
 			@foreach (var _lecture in day) {

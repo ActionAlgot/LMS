@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<LMS.Models.SubmissionFile>
 
-<h2>Klass @ViewBag.KlassName submitted files</h2>
+<h2>Submitted assignments for your classes</h2>
+<p>Here, you as a teacher may leave feedback on your students assignments.</p>
 <table class="table" ng-app="CommentingApp" >
 	<tr>
 		<th>
@@ -30,11 +31,11 @@
 					@Html.DisplayFor(modelItem => item.ContentType)
 				</td>
 				<td ng-init="Comment = { Text: '', SubmissionID: @item.ID }">
-					<input ng-model="Comment.Text" required />
-					<button ng-click="SubmitComment(Comment)">Submit</button>
+					<input class="form-control" ng-model="Comment.Text" required />
+					<button class="form-control btn btn-success" ng-click="SubmitComment(Comment)">Leave Comment</button>
 				</td>
 				<td>
-					@Html.ActionLink("Download", "Download", new { id = item.ID })
+					@Html.ActionLink("Download", "Download", new { id = item.ID }, new { @class = "btn btn-primary" })
 				</td>
 			</tr>
 
