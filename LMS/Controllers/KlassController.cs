@@ -71,5 +71,11 @@ namespace LMS.Controllers
 
 			return Json(new { Added = success}, JsonRequestBehavior.AllowGet);
 		}
+
+		[Authorize(Roles="Teacher")]
+		public ActionResult Delete(int ID) {
+			repo.Delete(ID);
+			return RedirectToAction("Index");
+		}
 	}
 }

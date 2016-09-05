@@ -61,5 +61,19 @@ namespace LMS.Repositories {
 			}
 			return false;
 		}
+
+		public bool Delete(int ID) {
+			var klass = ctx.Klasses.SingleOrDefault(k => k.ID == ID);
+			if (klass != null) {
+				var lectures = klass.Schedule.Lectures.ToList();
+				foreach (var lecture in lectures)
+					ctx.Lectures.Remove(lecture);
+				ctx.Schedules.Remove(klass.Schedule);
+				ctx.Klasses.Remove(klass);
+				ctx.SaveChanges();
+				return true;
+			}
+			return false;
+		}
 	}
 }
