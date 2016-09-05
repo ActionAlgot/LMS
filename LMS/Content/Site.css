@@ -53,12 +53,12 @@ hr { color: black; border-color: #444; }
 .day {
     box-sizing: border-box;
     padding: 0px;
-    margin: 2px;
+    margin: 0px;
     position: relative;
-    width: 13.3%;
+    width: 14.2857%;
     height: 606px; /* 600 minuter (10 tim) + 6px margins */
     float: left;
-    /*border: 1px solid grey;*/
+    border-left: 1px dotted rgba(0,0,0,0.2);
     margin-top: 20px;
     background-color: #fff;
     background-position: top left;
