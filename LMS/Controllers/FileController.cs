@@ -28,8 +28,9 @@ namespace LMS.Controllers {
 			return View(repo.GetKlassFiles(KlassID).ToList());
 		}
 		[HttpPost]
-		public ActionResult GetDocument(HttpPostedFileBase file, string SelectedKlassId)
+		public ActionResult GetDocument(HttpPostedFileBase file, string SelectedKlassId, string returnToAll)
 		{
+			Debug.Write(returnToAll);
 			// Verify that the user selected a file
 			if (file != null && file.ContentLength > 0)
 			{
@@ -55,7 +56,9 @@ namespace LMS.Controllers {
 
 				// Show success ...
 				repo.Add(newFile);
-				return RedirectToAction("Index", new { KlassID = SelectedKlassId });
+				return returnToAll == "true"
+					? RedirectToAction("Share")
+					: RedirectToAction("Share", new { kID = SelectedKlassId });
 			}
 			else
 			{
